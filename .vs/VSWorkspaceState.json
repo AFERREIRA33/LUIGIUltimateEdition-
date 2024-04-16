@@ -1,0 +1,12 @@
+{
+  "OutputFoldersPerTargetSystem": {
+    "Ordinateur local": [
+      "out\\binaries"
+    ]
+  },
+  "ExpandedNodes": [
+    ""
+  ],
+  "SelectedNode": "\\Affichage des cibles de CMake",
+  "PreviewInSolutionExplorer": true
+}
