@@ -8,7 +8,7 @@ get_filename_component(VCPKG_ROOT ${VCPKG_EXECUTABLE} DIRECTORY)
 set(CMAKE_TOOLCHAIN_FILE "${VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake")
 include(${CMAKE_TOOLCHAIN_FILE})
 
-project(toto CXX)#project definition + check and initialization of all settings and compilateur suffs
+project(LUIGIUltimateEdition CXX)#project definition + check and initialization of all settings and compilateur suffs
 
 find_package(SFML CONFIG REQUIRED COMPONENTS graphics audio system window)
 
