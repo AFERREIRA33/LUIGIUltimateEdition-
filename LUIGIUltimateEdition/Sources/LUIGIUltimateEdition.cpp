@@ -5,5 +5,4 @@ int main()
 {
     GameEngine* game = GameEngine::GetInstance();
     game->RunGame();
-
 }
