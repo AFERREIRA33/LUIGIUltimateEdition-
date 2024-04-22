@@ -23,7 +23,7 @@ GameEngine::~GameEngine()
 void GameEngine::RunGame() {
 	sf::Texture playerTexture;
 	float changeX = 0;
-	if (!playerTexture.loadFromFile("..\\..\\Ressources\\mario_projet.png"))
+	if (!playerTexture.loadFromFile("../../Ressources/mario_projet.png"))
 	{
 	}
 	sf::Sprite playerSprite(playerTexture);
