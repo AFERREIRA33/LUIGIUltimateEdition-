@@ -6,10 +6,8 @@
 GameEngine* GameEngine::m_engine = nullptr;
 
 GameEngine* GameEngine::GetInstance() {
-	std::cout << "isNull" << std::endl;
 	if (m_engine == nullptr)
 	{
-		std::cout << "Null" << std::endl;
 		m_engine = new GameEngine();
 	}
 	return m_engine;
@@ -42,11 +40,5 @@ void GameEngine::HandleInput() {
 	m_inputManager->HandleInput();
 }
 sf::RenderWindow* GameEngine::GetWindow() {
-	if (m_window->isOpen()) {
-		std::cout << "open" << std::endl;
-	}
-	else {
-		std::cout << "close" << std::endl;
-	}
 	return m_window;
 }

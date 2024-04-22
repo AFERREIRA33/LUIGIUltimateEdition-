@@ -17,7 +17,6 @@ InputManager::~InputManager() {
 void InputManager::HandleInput() {
 	using event = sf::Event;
 	event e;
-	std::cout << "toto";
 	while (m_window->pollEvent(e))
 	{
 		switch (e.type)
