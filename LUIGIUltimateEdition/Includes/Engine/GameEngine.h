@@ -7,6 +7,7 @@ class InputManager;
 class GameEngine
 {
 public:
+
 	static GameEngine* GetInstance();
 	virtual ~GameEngine();
 	void RunGame();
@@ -17,5 +18,5 @@ private:
 	sf::RenderWindow* m_window;
 	InputManager* m_inputManager;
 	void Start();
-	void HandleInput();
+	void HandleInput(float& changeX);
 };

@@ -6,7 +6,7 @@ class InputManager
 {
 public:
 	virtual ~InputManager();
-	void HandleInput();
+	void HandleInput(float& changeX);
 	static InputManager* GetInstance();
 private:
 	InputManager();

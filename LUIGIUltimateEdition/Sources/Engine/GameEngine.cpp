@@ -21,6 +21,13 @@ GameEngine::~GameEngine()
 }
 
 void GameEngine::RunGame() {
+	sf::Texture playerTexture;
+	float changeX = 0;
+	if (!playerTexture.loadFromFile("..\\..\\Ressources\\mario_projet.png"))
+	{
+	}
+	sf::Sprite playerSprite(playerTexture);
+	playerSprite.setPosition(500, 500);
 	if (!m_window)
 		m_window = new sf::RenderWindow(sf::VideoMode(960, 540), "LUIGI Ultimate Edition", sf::Style::Titlebar | sf::Style::Close);
 	sf::View currentView = m_window->getView();
@@ -28,7 +35,12 @@ void GameEngine::RunGame() {
 	m_window->setView(currentView);
 	Start();
 	while (m_window->isOpen()) {
-		HandleInput();
+		m_window->clear();
+		HandleInput(changeX);
+		playerSprite.move(changeX, 0);
+		changeX = 0;
+		m_window->draw(playerSprite);
+		m_window->display();
 	}
 }
 
@@ -36,8 +48,8 @@ void GameEngine::Start() {
 	m_inputManager = InputManager::GetInstance();
 }
 
-void GameEngine::HandleInput() {
-	m_inputManager->HandleInput();
+void GameEngine::HandleInput(float& changeX) {
+	m_inputManager->HandleInput(changeX);
 }
 sf::RenderWindow* GameEngine::GetWindow() {
 	return m_window;

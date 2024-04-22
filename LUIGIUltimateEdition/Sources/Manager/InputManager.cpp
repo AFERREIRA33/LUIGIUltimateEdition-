@@ -14,7 +14,7 @@ InputManager* InputManager::GetInstance() {
 InputManager::~InputManager() {
 
 }
-void InputManager::HandleInput() {
+void InputManager::HandleInput(float& changeX) {
 	using event = sf::Event;
 	event e;
 	while (m_window->pollEvent(e))
@@ -25,6 +25,17 @@ void InputManager::HandleInput() {
 			m_window->close();
 			break;
 		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+		{
+			changeX= -5;
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+		{
+			changeX = 5;
+		}
+		
+
+
 	}
 }
 
