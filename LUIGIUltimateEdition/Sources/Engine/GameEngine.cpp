@@ -2,6 +2,7 @@
 #include "..\..\Includes\Manager\InputManager.h"
 #include "iostream"
 #include <SFML/Graphics.hpp>
+#include <filesystem>
 
 GameEngine* GameEngine::m_engine = nullptr;
 
@@ -23,7 +24,7 @@ GameEngine::~GameEngine()
 void GameEngine::RunGame() {
 	sf::Texture playerTexture;
 	float changeX = 0;
-	if (!playerTexture.loadFromFile("../../Ressources/mario_projet.png"))
+	if (!playerTexture.loadFromFile("../../LUIGIUltimateEdition/Ressources/mario_projet.png"))
 	{
 	}
 	sf::Sprite playerSprite(playerTexture);
