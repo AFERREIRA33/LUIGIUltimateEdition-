@@ -1,11 +1,14 @@
 #pragma once
 
-#include "..\..\Includes\Manager\InputManager.h"
-#include "..\..\Includes\Components\BaseObject.h"
+#include "..\Manager\InputManager.h"
+#include "..\Manager\PhysicManager.h"
+#include "..\Components\BaseObject.h"
 #include "iostream"
 #include <SFML/Graphics.hpp>
 #include <filesystem>
+
 class InputManager;
+class PhysicManager;
 
 class GameEngine : public BaseObject
 {
@@ -21,8 +24,16 @@ private:
 	GameEngine() = default;
 	static GameEngine* m_engine;
 	sf::RenderWindow* m_window;
+	PhysicManager* m_physics;
 	InputManager* m_inputManager;
 	void Start();
 	void HandleInput(float& changeX);
-	DECLARE_RTTI(GameEngine, BaseObject);
+	virtual FClass GetClass() override {
+		FClass Parent = BaseObject::StaticClass();
+		return FClass("GameEngine", { Parent });
+	};
+	static FClass StaticClass() {
+		FClass Parent = BaseObject::StaticClass();
+		return FClass("GameEngine", { Parent });
+	};
 };

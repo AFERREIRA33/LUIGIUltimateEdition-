@@ -1,18 +1,29 @@
 #pragma once
-#include <iostream>
+#include <vector>
+#include <string>
 
 struct FClass {
 public:
+
+
 	std::string ClassID;
-	FClass* Parent;
+	std::vector<FClass> Parents;
+
+	FClass() = default;
+
 	FClass(std::string id, FClass p) {
 		ClassID = id;
-		Parent = &p;
+		Parents.push_back(p);
 	};
 	FClass(std::string id) {
 		ClassID = id;
-		Parent = nullptr;
+		Parents.clear();
 	};
+	bool IsSameClass(std::string classToCompare) {
+		return classToCompare == ClassID;
+	}
+
+
 };
 
 

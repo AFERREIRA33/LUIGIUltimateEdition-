@@ -1,8 +1,9 @@
 #pragma once
 
 #include "SFML/Graphics.hpp"
+#include "..\Components\BaseObject.h"
 
-class PhysicManager
+class PhysicManager : public BaseObject
 {
 
 public:
@@ -13,8 +14,7 @@ public:
 	bool isOnGround;
 	bool isJumping;
 	sf::Vector2f velocity;
-	
-
+	DECLARE_RTTI(PhysicManager, BaseObject);
 private:
 	static PhysicManager* m_physic;
 };
