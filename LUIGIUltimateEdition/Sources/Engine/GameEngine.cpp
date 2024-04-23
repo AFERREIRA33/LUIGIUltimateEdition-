@@ -1,3 +1,4 @@
+#pragma once
 #include "..\..\Includes\Engine\GameEngine.h"
 #include "..\..\Includes\Manager\InputManager.h"
 #include "..\..\Includes\Manager\PhysicManager.h"
@@ -5,8 +6,9 @@
 #include <SFML/Graphics.hpp>
 #include <filesystem>
 
-GameEngine* GameEngine::m_engine = nullptr;
-GameEngine* GameEngine::GetInstance() {
+GameEngine *GameEngine::m_engine = nullptr;
+GameEngine *GameEngine::GetInstance()
+{
 	if (m_engine == nullptr)
 	{
 		m_engine = new GameEngine();
@@ -14,16 +16,17 @@ GameEngine* GameEngine::GetInstance() {
 	return m_engine;
 }
 
-
 GameEngine::~GameEngine()
 {
 	delete m_engine;
 	delete m_window;
 	delete m_inputManager;
-	
 }
 
-void GameEngine::RunGame() {
+void GameEngine::RunGame()
+{
+	std::cout << GetClass().ClassID << std::endl;
+	std::cout << GetClass().Parent->ClassID << std::endl;
 	sf::Texture playerTexture;
 	float changeX = 0;
 	if (!playerTexture.loadFromFile("../../LUIGIUltimateEdition/Ressources/mario_projet.png"))
@@ -38,16 +41,16 @@ void GameEngine::RunGame() {
 	m_window->setView(currentView);
 	m_window->setFramerateLimit(60);
 	Start();
-	/*PhysicManager PM;*/
-	
-	while (m_window->isOpen()) {
+	PhysicManager PM;
+
+	while (m_window->isOpen())
+	{
 		deltaTime = deltaClock.restart();
 		m_window->clear();
 		HandleInput(changeX);
 
+		// float changeY = PM.Update(deltaTime.asSeconds());
 
-		//float changeY = PM.Update(deltaTime.asSeconds());
-		
 		playerSprite.move(changeX, 0);
 		changeX = 0;
 		m_window->draw(playerSprite);
@@ -55,13 +58,17 @@ void GameEngine::RunGame() {
 	}
 }
 
-void GameEngine::Start() {
+void GameEngine::Start()
+{
 	m_inputManager = InputManager::GetInstance();
 }
 
-void GameEngine::HandleInput(float& changeX) {
+void GameEngine::HandleInput(float &changeX)
+{
 	m_inputManager->HandleInput(changeX);
 }
-sf::RenderWindow* GameEngine::GetWindow() {
+
+sf::RenderWindow *GameEngine::GetWindow()
+{
 	return m_window;
 }
