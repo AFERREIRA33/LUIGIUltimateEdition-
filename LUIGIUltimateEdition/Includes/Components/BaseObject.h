@@ -13,7 +13,7 @@ public:
     }; 
     static FClass StaticClass() {
         return FClass("BaseObject");
-    };;
+    };
 private:
     const char* name;
 };
