@@ -15,6 +15,8 @@ public:
 	virtual ~GameEngine();
 	void RunGame();
 	sf::RenderWindow* GetWindow();
+	sf::Clock deltaClock;
+	sf::Time deltaTime;
 private:
 	GameEngine() = default;
 	static GameEngine* m_engine;
