@@ -1,10 +1,13 @@
 #pragma once
 
-#include "SFML/Graphics.hpp"
-
+#include "..\..\Includes\Manager\InputManager.h"
+#include "..\..\Includes\Components\BaseObject.h"
+#include "iostream"
+#include <SFML/Graphics.hpp>
+#include <filesystem>
 class InputManager;
 
-class GameEngine
+class GameEngine : public BaseObject
 {
 public:
 
@@ -19,4 +22,5 @@ private:
 	InputManager* m_inputManager;
 	void Start();
 	void HandleInput(float& changeX);
+	DECLARE_RTTI(GameEngine, BaseObject);
 };

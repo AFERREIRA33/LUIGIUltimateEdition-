@@ -1,8 +1,5 @@
+#pragma once
 #include "..\..\Includes\Engine\GameEngine.h"
-#include "..\..\Includes\Manager\InputManager.h"
-#include "iostream"
-#include <SFML/Graphics.hpp>
-#include <filesystem>
 
 GameEngine* GameEngine::m_engine = nullptr;
 
@@ -22,6 +19,8 @@ GameEngine::~GameEngine()
 }
 
 void GameEngine::RunGame() {
+	std::cout << GetClass().ClassID << std::endl;
+	std::cout << GetClass().Parent->ClassID<< std::endl;
 	sf::Texture playerTexture;
 	float changeX = 0;
 	if (!playerTexture.loadFromFile("../../LUIGIUltimateEdition/Ressources/mario_projet.png"))
@@ -52,6 +51,7 @@ void GameEngine::Start() {
 void GameEngine::HandleInput(float& changeX) {
 	m_inputManager->HandleInput(changeX);
 }
+
 sf::RenderWindow* GameEngine::GetWindow() {
 	return m_window;
 }
