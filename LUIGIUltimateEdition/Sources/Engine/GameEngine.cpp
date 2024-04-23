@@ -38,7 +38,7 @@ void GameEngine::RunGame() {
 	m_window->setView(currentView);
 	m_window->setFramerateLimit(60);
 	Start();
-	PhysicManager PM;
+	/*PhysicManager PM;*/
 	
 	while (m_window->isOpen()) {
 		deltaTime = deltaClock.restart();
