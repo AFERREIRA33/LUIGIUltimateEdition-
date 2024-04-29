@@ -1,6 +1,5 @@
 #pragma once
 #include "..\..\Includes\Engine\GameEngine.h"
-
 GameEngine *GameEngine::m_engine = nullptr;
 GameEngine *GameEngine::GetInstance()
 {

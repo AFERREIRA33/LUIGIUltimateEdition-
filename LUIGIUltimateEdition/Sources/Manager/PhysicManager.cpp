@@ -1,5 +1,4 @@
 #include "..\..\Includes\Manager\PhysicManager.h"
-#include "iostream"
 
 PhysicManager* PhysicManager::m_physic = nullptr;
 
