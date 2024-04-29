@@ -15,17 +15,16 @@ GameEngine::~GameEngine()
 	delete m_engine;
 	delete m_window;
 	delete m_inputManager;
+	delete m_renderManager;
+	delete m_physicsManager;
 }
 
 void GameEngine::RunGame()
 {
-	sf::Texture playerTexture;
+	
 	float changeX = 0;
-	if (!playerTexture.loadFromFile("../../LUIGIUltimateEdition/Ressources/mario_projet.png"))
-	{
-	}
-	sf::Sprite playerSprite(playerTexture);
-	playerSprite.setPosition(500, 500);
+
+	
 	if (!m_window)
 		m_window = new sf::RenderWindow(sf::VideoMode(960, 540), "LUIGI Ultimate Edition", sf::Style::Titlebar | sf::Style::Close);
 	sf::View currentView = m_window->getView();
@@ -42,9 +41,9 @@ void GameEngine::RunGame()
 
 		//float changeY = m_physics->Update(deltaTime.asSeconds());
 
-		playerSprite.move(changeX, 0);
+		/*playerSprite.move(changeX, 0);*/
 		changeX = 0;
-		m_window->draw(playerSprite);
+		/*m_window->draw(playerSprite);*/
 		m_window->display();
 	}
 }
@@ -52,7 +51,8 @@ void GameEngine::RunGame()
 void GameEngine::Start()
 {
 	m_inputManager = InputManager::GetInstance();
-	m_physics = PhysicManager::GetInstance();
+	m_physicsManager = PhysicManager::GetInstance();
+	m_renderManager = RenderManager::GetInstance();
 }
 
 void GameEngine::HandleInput(float &changeX)
