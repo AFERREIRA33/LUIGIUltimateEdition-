@@ -2,6 +2,7 @@
 
 #include "..\Manager\InputManager.h"
 #include "..\Manager\PhysicManager.h"
+#include "..\Manager\RenderManager.h"
 #include "..\Components\BaseObject.h"
 #include "iostream"
 #include <SFML/Graphics.hpp>
@@ -24,8 +25,9 @@ private:
 	GameEngine() = default;
 	static GameEngine* m_engine;
 	sf::RenderWindow* m_window;
-	PhysicManager* m_physics;
+	PhysicManager* m_physicsManager;
 	InputManager* m_inputManager;
+	RenderManager* m_renderManager;
 	void Start();
 	void HandleInput(float& changeX);
 	virtual FClass GetClass() override {

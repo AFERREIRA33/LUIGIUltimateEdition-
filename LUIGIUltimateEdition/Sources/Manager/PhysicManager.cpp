@@ -1,21 +1,22 @@
+#pragma once
 #include "..\..\Includes\Manager\PhysicManager.h"
 #include "iostream"
 
-PhysicManager* PhysicManager::m_physic = nullptr;
+PhysicManager* PhysicManager::m_physicsManager = nullptr;
 
 PhysicManager* PhysicManager::GetInstance() {
-	if (m_physic == nullptr)
+	if (m_physicsManager == nullptr)
 	{
-		m_physic = new PhysicManager();
+		m_physicsManager = new PhysicManager();
 	}
-	return m_physic;
+	return m_physicsManager;
 }
 
 
 
 PhysicManager::~PhysicManager()
 {
-	delete m_physic;
+	delete m_physicsManager;
 }
 
 

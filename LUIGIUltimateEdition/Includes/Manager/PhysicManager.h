@@ -16,7 +16,7 @@ public:
 	sf::Vector2f velocity;
 	DECLARE_RTTI(PhysicManager, BaseObject);
 private:
-	static PhysicManager* m_physic;
+	static PhysicManager* m_physicsManager;
 };
 
 
