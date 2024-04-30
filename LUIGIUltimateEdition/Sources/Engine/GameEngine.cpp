@@ -38,9 +38,7 @@ void GameEngine::RunGame()
 		deltaTime = deltaClock.restart();
 		m_window->clear();
 		HandleInput(changeX);
-
 		//float changeY = m_physics->Update(deltaTime.asSeconds());
-
 		/*playerSprite.move(changeX, 0);*/
 		changeX = 0;
 		/*m_window->draw(playerSprite);*/
@@ -53,6 +51,7 @@ void GameEngine::Start()
 	m_inputManager = InputManager::GetInstance();
 	m_physicsManager = PhysicManager::GetInstance();
 	m_renderManager = RenderManager::GetInstance();
+	m_objectManager = ObjectManager::GetInstance();
 }
 
 void GameEngine::HandleInput(float &changeX)

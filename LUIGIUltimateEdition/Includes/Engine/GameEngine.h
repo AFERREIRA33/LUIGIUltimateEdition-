@@ -3,6 +3,7 @@
 #include "..\Manager\InputManager.h"
 #include "..\Manager\PhysicManager.h"
 #include "..\Manager\RenderManager.h"
+#include "..\Manager\ObjectManager.h"
 #include "..\Components\BaseObject.h"
 #include "iostream"
 #include <SFML/Graphics.hpp>
@@ -28,6 +29,7 @@ private:
 	PhysicManager* m_physicsManager;
 	InputManager* m_inputManager;
 	RenderManager* m_renderManager;
+	ObjectManager* m_objectManager;
 	void Start();
 	void HandleInput(float& changeX);
 	virtual FClass GetClass() override {

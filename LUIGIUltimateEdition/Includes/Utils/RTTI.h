@@ -22,8 +22,6 @@ public:
 	bool IsSameClass(std::string classToCompare) {
 		return classToCompare == ClassID;
 	}
-
-
 };
 
 
