@@ -38,4 +38,8 @@ private:
 		FClass Parent = BaseObject::StaticClass();
 		return FClass("GameEngine", { Parent });
 	};
+	void SetRegistry();
 };
+
+#define REGISTER_CLASS(Class)\
+    ObjectManager::GetInstance()->RegisterObject<Class>(Class::StaticClass().ClassID);

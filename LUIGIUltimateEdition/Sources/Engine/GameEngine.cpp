@@ -1,9 +1,17 @@
 #pragma once
 #include "..\..\Includes\Engine\GameEngine.h"
+
 #include "..\..\Includes\Manager\InputManager.h"
 #include "..\..\Includes\Manager\PhysicManager.h"
 #include "..\..\Includes\Manager\RenderManager.h"
 #include "..\..\Includes\Manager\ObjectManager.h"
+
+#include "..\..\Includes\Components\TransformComponent.h"
+#include "..\..\Includes\Components\ColliderComponent.h"
+#include "..\..\Includes\Components\RenderComponent.h"
+
+#include "..\..\Includes\Object\Player.h"
+
 
 GameEngine *GameEngine::m_engine = nullptr;
 GameEngine *GameEngine::GetInstance()
@@ -58,6 +66,7 @@ void GameEngine::Start()
 	m_physicsManager = PhysicManager::GetInstance();
 	m_renderManager = RenderManager::GetInstance();
 	m_objectManager = ObjectManager::GetInstance();
+	SetRegistry();
 }
 
 void GameEngine::HandleInput(float &changeX)
@@ -68,4 +77,15 @@ void GameEngine::HandleInput(float &changeX)
 sf::RenderWindow *GameEngine::GetWindow()
 {
 	return m_window;
+}
+
+void GameEngine::SetRegistry() {
+	// Components
+	REGISTER_CLASS(TransformComponent);
+	REGISTER_CLASS(RenderComponent);
+	REGISTER_CLASS(ColliderComponent);
+	
+
+	// Entities
+	REGISTER_CLASS(Player);
 }

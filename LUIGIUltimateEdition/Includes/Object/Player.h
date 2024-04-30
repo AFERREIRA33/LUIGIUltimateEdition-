@@ -4,7 +4,8 @@
 
 class Player : public Entity
 {
-	Player();
+public:
+	Player() = default;
 	void Start() override;
 	void PlayerMove();
 	void PlayerJump();
