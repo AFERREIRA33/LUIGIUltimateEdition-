@@ -12,7 +12,6 @@
 //}
 TransformComponent::TransformComponent()
 {
-	position = FVector2D(5.6, 1);
 }
 
 TransformComponent::~TransformComponent()

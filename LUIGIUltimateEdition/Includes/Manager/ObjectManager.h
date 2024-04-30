@@ -18,6 +18,12 @@ public:
 		BaseObject* object = factory.ConstructObject(className);
 		return (T*)(object);
 	}
+	template<class T = BaseObject>
+	T* RegisterCreateObject(std::string className) {
+		factory.RegisterCreator(className, new DerivedBase<BaseObject, T>());
+		BaseObject* object = factory.ConstructObject(className);
+		return (T*)(object);
+	}
 	DECLARE_RTTI(ObjectManager, BaseObject);
 private:
 	Factory<BaseObject> factory;

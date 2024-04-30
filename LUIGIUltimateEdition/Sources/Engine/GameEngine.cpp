@@ -4,7 +4,6 @@
 #include "..\..\Includes\Manager\PhysicManager.h"
 #include "..\..\Includes\Manager\RenderManager.h"
 #include "..\..\Includes\Manager\ObjectManager.h"
-#include "..\..\Includes\Components\TransformComponent.h"
 
 GameEngine *GameEngine::m_engine = nullptr;
 GameEngine *GameEngine::GetInstance()
