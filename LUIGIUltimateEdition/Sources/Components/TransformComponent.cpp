@@ -1,7 +1,7 @@
 #pragma once
 #include "..\..\Includes\Components\TransformComponent.h"
 
-TransformComponent* TransformComponent::transform = nullptr;
+//TransformComponent* TransformComponent::transform = nullptr;
 
 
 //TransformComponent::TransformComponent(FVector2D pos, FVector2D rot, FVector2D scal)
@@ -10,10 +10,14 @@ TransformComponent* TransformComponent::transform = nullptr;
 //	rotation = rot;
 //	scale = scal;
 //}
+TransformComponent::TransformComponent()
+{
+	position = FVector2D(5.6, 1);
+}
 
 TransformComponent::~TransformComponent()
 {
-	delete transform;
+	//delete transform;
 }
 
 void TransformComponent::UpdatePosition(FVector2D pos)

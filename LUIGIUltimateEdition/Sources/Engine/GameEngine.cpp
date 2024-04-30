@@ -1,5 +1,11 @@
 #pragma once
 #include "..\..\Includes\Engine\GameEngine.h"
+#include "..\..\Includes\Manager\InputManager.h"
+#include "..\..\Includes\Manager\PhysicManager.h"
+#include "..\..\Includes\Manager\RenderManager.h"
+#include "..\..\Includes\Manager\ObjectManager.h"
+#include "..\..\Includes\Components\TransformComponent.h"
+
 GameEngine *GameEngine::m_engine = nullptr;
 GameEngine *GameEngine::GetInstance()
 {
@@ -45,6 +51,7 @@ void GameEngine::RunGame()
 		m_window->display();
 	}
 }
+
 
 void GameEngine::Start()
 {

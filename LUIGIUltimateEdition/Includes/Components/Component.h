@@ -6,7 +6,7 @@
 class Component : public BaseObject
 {
 public:
-	Component();
+	Component() = default;
 	virtual ~Component();
 	int ID;
 	DECLARE_RTTI(Component, BaseObject);

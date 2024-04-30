@@ -6,7 +6,7 @@ class BaseObject;
 template <class BaseClass = BaseObject>
 class Creator {
 public:
-	virtual ~Creator();
+	virtual ~Creator() = default;
 	virtual BaseClass* Create() = 0;
 };
 
@@ -31,7 +31,7 @@ public:
 	bool isRegistered(std::string className) {
 		return FactoryConstructors.contains(className);
 	}
-	void RegisterCreator(std::string classToCreate, Creator<BaseClass*> classCreator) {
+	void RegisterCreator(std::string classToCreate, Creator<BaseClass>* classCreator) {
 		if (!isRegistered(classToCreate)) {
 			FactoryConstructors.insert(std::make_pair(classToCreate, classCreator));
 		}

@@ -14,9 +14,9 @@ public:
 	}
 
 	template<class T = BaseObject>
-	BaseObject* CreateObject(std::string className) {
+	T* CreateObject(std::string className) {
 		BaseObject* object = factory.ConstructObject(className);
-		return T* object;
+		return (T*)(object);
 	}
 	DECLARE_RTTI(ObjectManager, BaseObject);
 private:

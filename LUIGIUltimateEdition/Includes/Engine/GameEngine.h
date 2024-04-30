@@ -2,21 +2,18 @@
 
 #include <SFML/Graphics.hpp>
 #include <filesystem>
-#include "..\Manager\InputManager.h"
-#include "..\Manager\PhysicManager.h"
-#include "..\Manager\RenderManager.h"
-#include "..\Manager\ObjectManager.h"
+
 #include "..\Components\BaseObject.h"
-#include "iostream"
 
 
 class InputManager;
 class PhysicManager;
+class ObjectManager;
+class RenderManager;
 
 class GameEngine : public BaseObject
 {
 public:
-
 	static GameEngine* GetInstance();
 	virtual ~GameEngine();
 	void RunGame();

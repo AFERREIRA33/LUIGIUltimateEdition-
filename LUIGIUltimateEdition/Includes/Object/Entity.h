@@ -9,7 +9,7 @@
 class Entity : public BaseObject
 {
 public:
-	Entity();
+	Entity() = default;
 	virtual void Start();
 	virtual ~Entity();
 	int ID;

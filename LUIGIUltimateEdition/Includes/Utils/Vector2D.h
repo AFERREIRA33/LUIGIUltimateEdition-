@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <format>
 template<typename T>
 
 struct Vector2D 
@@ -112,6 +113,10 @@ struct Vector2D
     }
     static inline float Dot(Vector2D& a, Vector2D& b) {
         return  a.Dot(b);
+    }
+    inline std::string ToString() {
+        std::string result = "x: " + std::to_string(x) + ", y: " + std::to_string(y);
+        return result;
     }
 
 };
