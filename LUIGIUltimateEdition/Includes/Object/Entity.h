@@ -4,16 +4,24 @@
 #include <string>
 #include <unordered_map>
 #include "..\Components\BaseObject.h"
+#include "..\Components\Component.h"
+#include "..\Components\ColliderComponent.h"
+#include "..\Components\RenderComponent.h"
+#include "..\Components\TransformComponent.h"
+#include "..\..\Includes\Manager\ObjectManager.h"
+#include "..\Utils\Template.h"
+
 
 
 class Entity : public BaseObject
 {
 public:
-	Entity() = default;
+	Entity();
 	virtual void Start();
 	virtual ~Entity();
 	int ID;
-	std::unordered_map<std::string, int> mymap;
+	sf::Texture texture;
+	std::unordered_map<std::string, Component*> componentList;
 	DECLARE_RTTI(Entity, BaseObject);
 };
 

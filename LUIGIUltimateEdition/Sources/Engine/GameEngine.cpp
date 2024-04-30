@@ -6,11 +6,13 @@
 #include "..\..\Includes\Manager\RenderManager.h"
 #include "..\..\Includes\Manager\ObjectManager.h"
 
+#include "..\..\Includes\Utils\Template.h"
+
 #include "..\..\Includes\Components\TransformComponent.h"
 #include "..\..\Includes\Components\ColliderComponent.h"
 #include "..\..\Includes\Components\RenderComponent.h"
 
-#include "..\..\Includes\Object\Player.h"
+
 
 
 GameEngine *GameEngine::m_engine = nullptr;
@@ -34,7 +36,7 @@ GameEngine::~GameEngine()
 
 void GameEngine::RunGame()
 {
-	
+	Player player;
 	float changeX = 0;
 
 	
@@ -45,16 +47,18 @@ void GameEngine::RunGame()
 	m_window->setView(currentView);
 	m_window->setFramerateLimit(60);
 	Start();
+	player.Start();
 
 	while (m_window->isOpen())
 	{
-		deltaTime = deltaClock.restart();
+		deltaTime = deltaClock.restart().asSeconds();
+		
 		m_window->clear();
-		HandleInput(changeX);
+		HandleInput(player,deltaTime);
 		//float changeY = m_physics->Update(deltaTime.asSeconds());
 		/*playerSprite.move(changeX, 0);*/
-		changeX = 0;
-		/*m_window->draw(playerSprite);*/
+		//changeX = 0;
+		m_window->draw(Cast<RenderComponent>(player.componentList.at("Render"))->spriteComp);
 		m_window->display();
 	}
 }
@@ -69,9 +73,9 @@ void GameEngine::Start()
 	SetRegistry();
 }
 
-void GameEngine::HandleInput(float &changeX)
+void GameEngine::HandleInput(Player& player,float deltaTime)
 {
-	m_inputManager->HandleInput(changeX);
+	m_inputManager->HandleInput(player,deltaTime);
 }
 
 sf::RenderWindow *GameEngine::GetWindow()
