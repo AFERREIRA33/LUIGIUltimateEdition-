@@ -1,6 +1,6 @@
 #pragma once
-#include "SFML/Graphics.hpp"
-#include "iostream"
+#include <SFML/Graphics.hpp>
+#include <iostream>
 #include "..\Components\BaseObject.h"
 
 class InputManager : public BaseObject
