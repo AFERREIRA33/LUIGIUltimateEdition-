@@ -1,5 +1,7 @@
 #pragma once
 #include "..\..\Includes\Manager\PhysicManager.h"
+#include "..\..\Includes\Object\Player.h"
+#include "..\..\Includes\Object\Ground.h"
 
 PhysicManager* PhysicManager::m_physicsManager = nullptr;
 
@@ -23,13 +25,13 @@ PhysicManager::PhysicManager()
 {
 }
 
-float PhysicManager::Update(float deltaTime)
+void PhysicManager::Update(Player& player, Ground& ground, float deltaTime)
 {
-	isOnGround = false;
+	isOnGround = Cast<ColliderComponent>(player.componentList.at("Collider"))->OnCollision(player,ground);
 	if (!isOnGround)
 	{
 		velocity.y += 9.81 * deltaTime * 2;
+		Cast<RenderComponent>(player.componentList.at("Render"))->spriteComp.move(0, velocity.y);
 	}
-	return velocity.y;
 }
 

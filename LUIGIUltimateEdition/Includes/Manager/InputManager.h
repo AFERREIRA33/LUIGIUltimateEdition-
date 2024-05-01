@@ -3,6 +3,7 @@
 #include <iostream>
 #include "..\Components\BaseObject.h"
 #include "..\..\Includes\Object\Player.h"
+#include "..\Utils\Vector2D.h"
 
 class InputManager : public BaseObject
 {

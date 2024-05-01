@@ -37,6 +37,7 @@ GameEngine::~GameEngine()
 void GameEngine::RunGame()
 {
 	Player player;
+	Ground ground;
 	float changeX = 0;
 
 	
@@ -48,6 +49,7 @@ void GameEngine::RunGame()
 	m_window->setFramerateLimit(60);
 	Start();
 	player.Start();
+	ground.Start();
 
 	while (m_window->isOpen())
 	{
@@ -55,10 +57,12 @@ void GameEngine::RunGame()
 		
 		m_window->clear();
 		HandleInput(player,deltaTime);
+		m_physicsManager->Update(player,ground,deltaTime);
 		//float changeY = m_physics->Update(deltaTime.asSeconds());
 		/*playerSprite.move(changeX, 0);*/
 		//changeX = 0;
 		m_window->draw(Cast<RenderComponent>(player.componentList.at("Render"))->spriteComp);
+		m_window->draw(Cast<RenderComponent>(ground.componentList.at("Render"))->spriteComp);
 		m_window->display();
 	}
 }

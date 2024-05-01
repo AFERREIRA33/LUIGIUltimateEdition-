@@ -13,6 +13,7 @@
 
 
 
+
 class Entity : public BaseObject
 {
 public:
@@ -22,6 +23,7 @@ public:
 	int ID;
 	sf::Texture texture;
 	std::unordered_map<std::string, Component*> componentList;
+	FVector2D transformInitial;
 	DECLARE_RTTI(Entity, BaseObject);
 };
 

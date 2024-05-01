@@ -5,9 +5,10 @@ class Player : public Entity
 {
 public:
 	Player() = default;
+	virtual ~Player();
 	void Start() override;
 	void PlayerMove(float speed, float deltaTime);
-	void PlayerJump();
+	void PlayerJump(FVector2D velocity,float deltaTime);
 	void Collide();
 
 

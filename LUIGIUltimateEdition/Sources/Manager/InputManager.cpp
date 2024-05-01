@@ -17,6 +17,7 @@ InputManager::~InputManager() {
 void InputManager::HandleInput(Player& player, float deltaTime) {
 	using event = sf::Event;
 	event e;
+	FVector2D velocity(10, -50);
 	while (m_window->pollEvent(e))
 	{
 		switch (e.type)
@@ -32,6 +33,11 @@ void InputManager::HandleInput(Player& player, float deltaTime) {
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 		{
 			player.PlayerMove(200, deltaTime);
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+		{
+			
+			player.PlayerJump(velocity, deltaTime);
 		}
 	}
 }
