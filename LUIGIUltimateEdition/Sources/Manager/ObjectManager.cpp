@@ -11,6 +11,7 @@ ObjectManager* ObjectManager::GetInstance() {
 	return m_object;
 }
 
+
 ObjectManager::ObjectManager() {
 
 }

@@ -12,7 +12,7 @@ class PhysicManager : public BaseObject
 
 public:
 	PhysicManager();
-	void Update(Player& player, Ground& ground, float deltaTime);
+	void Update(Player* player, Ground* ground, float deltaTime);
 	void AddForce();
 	virtual ~PhysicManager();
 	static PhysicManager* GetInstance();

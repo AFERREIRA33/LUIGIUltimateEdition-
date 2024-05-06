@@ -10,10 +10,10 @@ ColliderComponent::~ColliderComponent()
 	delete collider;
 }
 
-bool ColliderComponent::OnCollision(Player& player,Ground& ground)
+bool ColliderComponent::OnCollision(Player* player,Ground* ground)
 {
 
-	if (Cast<RenderComponent>(ground.componentList.at("Render"))->spriteComp.getGlobalBounds().intersects(Cast<RenderComponent>(player.componentList.at("Render"))->spriteComp.getGlobalBounds())) {
+	if (Cast<RenderComponent>(ground->componentList.at("Render"))->spriteComp.getGlobalBounds().intersects(Cast<RenderComponent>(player->componentList.at("Render"))->spriteComp.getGlobalBounds())) {
 		return true;
 	}
 	//for (Entity entity : entities) {
