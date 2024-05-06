@@ -5,11 +5,13 @@
 
 class Player;
 class Ground;
+class Entity;
 
 class ColliderComponent : public Component
 {
 public:
 	virtual ~ColliderComponent();
+	Entity* obj;
 	bool OnCollision(Player& player, Ground& ground);
 	DECLARE_RTTI(ColliderComponent, Component);
 private:

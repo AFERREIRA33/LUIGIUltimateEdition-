@@ -17,10 +17,11 @@ InputManager::~InputManager() {
 void InputManager::HandleInput(Player& player, float deltaTime) {
 	using event = sf::Event;
 	event e;
-	FVector2D velocity(100, -50);
 
+	
 	while (m_window->pollEvent(e))
 	{
+		std::cout << e.Count << std::endl;
 		switch (e.type)
 		{
 		case event::Closed:
@@ -33,6 +34,7 @@ void InputManager::HandleInput(Player& player, float deltaTime) {
 			PhysicManager::GetInstance()->direction = false;
 			player.PlayerMove(-200,deltaTime);
 		}
+		
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 		{
 			PhysicManager::GetInstance()->direction = true;
@@ -40,7 +42,6 @@ void InputManager::HandleInput(Player& player, float deltaTime) {
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && !player.isJumping)
 		{
-
 			PhysicManager::GetInstance()->AddForce();
 			player.PlayerJump(PhysicManager::GetInstance()->velocity, deltaTime);
 		}
