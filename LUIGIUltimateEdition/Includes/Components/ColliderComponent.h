@@ -3,11 +3,14 @@
 #include "..\Components\Component.h"
 
 
+class Player;
+class Ground;
+
 class ColliderComponent : public Component
 {
 public:
 	virtual ~ColliderComponent();
-	bool OnCollision();
+	bool OnCollision(Player& player, Ground& ground);
 	DECLARE_RTTI(ColliderComponent, Component);
 private:
 	bool collide;

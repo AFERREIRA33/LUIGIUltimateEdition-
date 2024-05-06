@@ -14,9 +14,10 @@ InputManager* InputManager::GetInstance() {
 InputManager::~InputManager() {
 
 }
-void InputManager::HandleInput(float& changeX) {
+void InputManager::HandleInput(Player& player, float deltaTime) {
 	using event = sf::Event;
 	event e;
+	FVector2D velocity(10, -50);
 	while (m_window->pollEvent(e))
 	{
 		switch (e.type)
@@ -27,15 +28,17 @@ void InputManager::HandleInput(float& changeX) {
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
 		{
-			changeX= -5;
+			player.PlayerMove(-200,deltaTime);
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 		{
-			changeX = 5;
+			player.PlayerMove(200, deltaTime);
 		}
-		
-
-
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+		{
+			
+			player.PlayerJump(velocity, deltaTime);
+		}
 	}
 }
 

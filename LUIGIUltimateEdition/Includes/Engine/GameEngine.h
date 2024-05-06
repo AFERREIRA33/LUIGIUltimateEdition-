@@ -4,6 +4,8 @@
 #include <filesystem>
 
 #include "..\Components\BaseObject.h"
+#include "..\..\Includes\Object\Player.h"
+#include "..\..\Includes\Object\Ground.h"
 
 
 class InputManager;
@@ -19,7 +21,7 @@ public:
 	void RunGame();
 	sf::RenderWindow* GetWindow();
 	sf::Clock deltaClock;
-	sf::Time deltaTime;
+	float deltaTime;
 private:
 	GameEngine() = default;
 	static GameEngine* m_engine;
@@ -29,7 +31,7 @@ private:
 	RenderManager* m_renderManager;
 	ObjectManager* m_objectManager;
 	void Start();
-	void HandleInput(float& changeX);
+	void HandleInput(Player& player,float deltaTime);
 	virtual FClass GetClass() override {
 		FClass Parent = BaseObject::StaticClass();
 		return FClass("GameEngine", { Parent });

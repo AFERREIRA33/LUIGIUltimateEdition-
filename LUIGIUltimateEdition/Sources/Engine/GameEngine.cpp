@@ -10,13 +10,14 @@
 #include "..\..\Includes\Manager\ObjectManager.h"
 
 // Components
+#include "..\..\Includes\Utils\Template.h"
+
 #include "..\..\Includes\Components\TransformComponent.h"
 #include "..\..\Includes\Components\ColliderComponent.h"
 #include "..\..\Includes\Components\RenderComponent.h"
 
 // Objects
 #include "..\..\Includes\Object\Player.h"
-
 
 GameEngine *GameEngine::m_engine = nullptr;
 GameEngine *GameEngine::GetInstance()
@@ -39,10 +40,10 @@ GameEngine::~GameEngine()
 
 void GameEngine::RunGame()
 {
-	
+	Player player;
+	Ground ground;
 	float changeX = 0;
 
-	
 	if (!m_window)
 		m_window = new sf::RenderWindow(sf::VideoMode(960, 540), "LUIGI Ultimate Edition", sf::Style::Titlebar | sf::Style::Close);
 	sf::View currentView = m_window->getView();
@@ -50,20 +51,24 @@ void GameEngine::RunGame()
 	m_window->setView(currentView);
 	m_window->setFramerateLimit(60);
 	Start();
+	player.Start();
+	ground.Start();
 
 	while (m_window->isOpen())
 	{
-		deltaTime = deltaClock.restart();
+		deltaTime = deltaClock.restart().asSeconds();
+
 		m_window->clear();
-		HandleInput(changeX);
-		//float changeY = m_physics->Update(deltaTime.asSeconds());
+		HandleInput(player, deltaTime);
+		m_physicsManager->Update(player, ground, deltaTime);
+		// float changeY = m_physics->Update(deltaTime.asSeconds());
 		/*playerSprite.move(changeX, 0);*/
-		changeX = 0;
-		/*m_window->draw(playerSprite);*/
+		// changeX = 0;
+		m_window->draw(Cast<RenderComponent>(player.componentList.at("Render"))->spriteComp);
+		m_window->draw(Cast<RenderComponent>(ground.componentList.at("Render"))->spriteComp);
 		m_window->display();
 	}
 }
-
 
 void GameEngine::Start()
 {
@@ -74,9 +79,9 @@ void GameEngine::Start()
 	SetRegistry();
 }
 
-void GameEngine::HandleInput(float &changeX)
+void GameEngine::HandleInput(Player &player, float deltaTime)
 {
-	m_inputManager->HandleInput(changeX);
+	m_inputManager->HandleInput(player, deltaTime);
 }
 
 sf::RenderWindow *GameEngine::GetWindow()
@@ -84,12 +89,13 @@ sf::RenderWindow *GameEngine::GetWindow()
 	return m_window;
 }
 
-void GameEngine::SetRegistry() {
+void GameEngine::SetRegistry()
+{
 	// Components
 	REGISTER_CLASS(TransformComponent);
 	REGISTER_CLASS(RenderComponent);
 	REGISTER_CLASS(ColliderComponent);
-	
+
 	// Entities
 	REGISTER_CLASS(Player);
 }

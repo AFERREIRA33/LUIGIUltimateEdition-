@@ -3,13 +3,16 @@
 #include "..\Components\BaseObject.h"
 #include "..\Utils\Vector2D.h"
 
+class Player;
+class Ground;
+
 
 class PhysicManager : public BaseObject
 {
 
 public:
 	PhysicManager();
-	float Update(float deltaTime);
+	void Update(Player& player, Ground& ground, float deltaTime);
 	virtual ~PhysicManager();
 	static PhysicManager* GetInstance();
 	bool isOnGround;

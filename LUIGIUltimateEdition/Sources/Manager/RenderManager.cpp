@@ -25,8 +25,6 @@ RenderManager::~RenderManager()
 //
 //}
 
-//if (!playerTexture.loadFromFile("../../LUIGIUltimateEdition/Ressources/mario_projet.png"))
-//{
-//}
+
 //sf::Sprite playerSprite(playerTexture);
 //playerSprite.setPosition(500, 500);

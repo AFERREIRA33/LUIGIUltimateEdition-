@@ -7,16 +7,17 @@
 class RenderComponent : public Component
 {
 public:
-	/*RenderComponent(sf::Texture& texture);*/
+	RenderComponent();
 	virtual ~RenderComponent();
-	sf::Sprite LoadSprite();
+	void LoadSprite(sf::Texture& texture, FVector2D objTransform);
 	void SetSpritePos(FVector2D objTransform);
 	DECLARE_RTTI(RenderComponent, Component);
+	sf::Sprite spriteComp;
 
 private:
 	static RenderComponent* render;
 	sf::Texture textureComp;
-	sf::Sprite spriteComp;
+	
 	FVector2D transform;
 
 };

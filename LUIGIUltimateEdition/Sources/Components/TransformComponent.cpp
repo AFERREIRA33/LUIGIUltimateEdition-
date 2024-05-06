@@ -21,7 +21,8 @@ TransformComponent::~TransformComponent()
 
 void TransformComponent::UpdatePosition(FVector2D pos)
 {
-	position = pos;
+	position.x = pos.x;
+	position.y = pos.y;
 }
 
 void TransformComponent::UpdateRotation(FVector2D rot)

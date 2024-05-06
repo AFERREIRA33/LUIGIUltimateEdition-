@@ -1,14 +1,14 @@
 #pragma once
-
-#include "..\..\Includes\Object\Entity.h"
+#include "..\Object\Entity.h"
 
 class Player : public Entity
 {
 public:
 	Player() = default;
+	virtual ~Player();
 	void Start() override;
-	void PlayerMove();
-	void PlayerJump();
+	void PlayerMove(float speed, float deltaTime);
+	void PlayerJump(FVector2D velocity,float deltaTime);
 	void Collide();
 
 
