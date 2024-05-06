@@ -1,15 +1,20 @@
 #pragma once
+// Engine
+
 #include "..\..\Includes\Engine\GameEngine.h"
 
+// Managers
 #include "..\..\Includes\Manager\InputManager.h"
 #include "..\..\Includes\Manager\PhysicManager.h"
 #include "..\..\Includes\Manager\RenderManager.h"
 #include "..\..\Includes\Manager\ObjectManager.h"
 
+// Components
 #include "..\..\Includes\Components\TransformComponent.h"
 #include "..\..\Includes\Components\ColliderComponent.h"
 #include "..\..\Includes\Components\RenderComponent.h"
 
+// Objects
 #include "..\..\Includes\Object\Player.h"
 
 
@@ -85,7 +90,6 @@ void GameEngine::SetRegistry() {
 	REGISTER_CLASS(RenderComponent);
 	REGISTER_CLASS(ColliderComponent);
 	
-
 	// Entities
 	REGISTER_CLASS(Player);
 }
