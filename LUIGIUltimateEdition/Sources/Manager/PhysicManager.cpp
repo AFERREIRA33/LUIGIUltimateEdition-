@@ -30,8 +30,29 @@ void PhysicManager::Update(Player& player, Ground& ground, float deltaTime)
 	isOnGround = Cast<ColliderComponent>(player.componentList.at("Collider"))->OnCollision(player,ground);
 	if (!isOnGround)
 	{
-		velocity.y += 9.81 * deltaTime * 2;
-		Cast<RenderComponent>(player.componentList.at("Render"))->spriteComp.move(0, velocity.y);
+		if (!direction)
+		{
+			velocity += 5 * deltaTime * 2;
+			Cast<RenderComponent>(player.componentList.at("Render"))->spriteComp.move(-velocity.x, velocity.y);
+		}
+		else
+		{
+			velocity += 5 * deltaTime * 2;
+			Cast<RenderComponent>(player.componentList.at("Render"))->spriteComp.move(velocity.x, velocity.y);
+		}
 	}
+	else
+	{
+		player.isJumping = false;
+	}
+}
+
+void PhysicManager::AddForce()
+{
+
+	velocity.x = 2;
+	velocity.y = -4;
+
+
 }
 
