@@ -13,10 +13,12 @@ class PhysicManager : public BaseObject
 public:
 	PhysicManager();
 	void Update(Player& player, Ground& ground, float deltaTime);
+	void AddForce();
 	virtual ~PhysicManager();
 	static PhysicManager* GetInstance();
 	bool isOnGround;
 	bool isJumping;
+	bool direction;
 	FVector2D velocity;
 	DECLARE_RTTI(PhysicManager, BaseObject);
 private:

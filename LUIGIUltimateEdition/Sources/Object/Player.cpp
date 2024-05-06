@@ -30,8 +30,11 @@ void Player::PlayerMove(float speed,float deltaTime)
 
 void Player::PlayerJump(FVector2D velocity,float deltaTime)
 {
-	Cast<RenderComponent>(componentList.at("Render"))->spriteComp.move(velocity.x * deltaTime, velocity.y);
-	
+	if (!isJumping)
+	{
+		Cast<RenderComponent>(componentList.at("Render"))->spriteComp.move(velocity.x, velocity.y);
+		isJumping = true;
+	}
 }
 
 void Player::Collide()

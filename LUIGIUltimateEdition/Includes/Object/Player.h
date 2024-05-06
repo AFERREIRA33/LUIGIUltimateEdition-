@@ -10,6 +10,7 @@ public:
 	void PlayerMove(float speed, float deltaTime);
 	void PlayerJump(FVector2D velocity,float deltaTime);
 	void Collide();
+	bool isJumping;
 
 
 	DECLARE_RTTI(Player, Entity);
