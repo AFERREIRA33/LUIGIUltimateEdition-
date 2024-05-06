@@ -14,7 +14,7 @@ InputManager* InputManager::GetInstance() {
 InputManager::~InputManager() {
 
 }
-void InputManager::HandleInput(Player& player, float deltaTime) {
+void InputManager::HandleInput(Player* player, float deltaTime) {
 	using event = sf::Event;
 	event e;
 	FVector2D velocity(100, -50);
@@ -31,18 +31,18 @@ void InputManager::HandleInput(Player& player, float deltaTime) {
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
 		{
 			PhysicManager::GetInstance()->direction = false;
-			player.PlayerMove(-200,deltaTime);
+			player->PlayerMove(-200,deltaTime);
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 		{
 			PhysicManager::GetInstance()->direction = true;
-			player.PlayerMove(200, deltaTime);
+			player->PlayerMove(200, deltaTime);
 		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && !player.isJumping)
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && !player->isJumping)
 		{
 
 			PhysicManager::GetInstance()->AddForce();
-			player.PlayerJump(PhysicManager::GetInstance()->velocity, deltaTime);
+			player->PlayerJump(PhysicManager::GetInstance()->velocity, deltaTime);
 		}
 	}
 }

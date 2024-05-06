@@ -25,25 +25,25 @@ PhysicManager::PhysicManager()
 {
 }
 
-void PhysicManager::Update(Player& player, Ground& ground, float deltaTime)
+void PhysicManager::Update(Player* player, Ground* ground, float deltaTime)
 {
-	isOnGround = Cast<ColliderComponent>(player.componentList.at("Collider"))->OnCollision(player,ground);
+	isOnGround = Cast<ColliderComponent>(player->componentList.at("Collider"))->OnCollision(player,ground);
 	if (!isOnGround)
 	{
 		if (!direction)
 		{
 			velocity += 5 * deltaTime * 2;
-			Cast<RenderComponent>(player.componentList.at("Render"))->spriteComp.move(-velocity.x, velocity.y);
+			Cast<RenderComponent>(player->componentList.at("Render"))->spriteComp.move(-velocity.x, velocity.y);
 		}
 		else
 		{
 			velocity += 5 * deltaTime * 2;
-			Cast<RenderComponent>(player.componentList.at("Render"))->spriteComp.move(velocity.x, velocity.y);
+			Cast<RenderComponent>(player->componentList.at("Render"))->spriteComp.move(velocity.x, velocity.y);
 		}
 	}
 	else
 	{
-		player.isJumping = false;
+		player->isJumping = false;
 	}
 }
 

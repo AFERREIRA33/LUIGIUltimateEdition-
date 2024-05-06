@@ -1,5 +1,7 @@
 #pragma once
 #include <vector>
+#include <iostream>
+
 #include "Factory.h"
 #include "..\Components\BaseObject.h"
 
@@ -16,12 +18,14 @@ public:
 	template<class T = BaseObject>
 	T* CreateObject(std::string className) {
 		BaseObject* object = factory.ConstructObject(className);
+		Registry.push_back(object);
 		return (T*)(object);
 	}
 	template<class T = BaseObject>
 	T* RegisterCreateObject(std::string className) {
 		factory.RegisterCreator(className, new DerivedBase<BaseObject, T>());
 		BaseObject* object = factory.ConstructObject(className);
+		Registry.push_back(object);
 		return (T*)(object);
 	}
 	DECLARE_RTTI(ObjectManager, BaseObject);

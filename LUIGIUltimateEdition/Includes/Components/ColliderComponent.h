@@ -10,7 +10,7 @@ class ColliderComponent : public Component
 {
 public:
 	virtual ~ColliderComponent();
-	bool OnCollision(Player& player, Ground& ground);
+	bool OnCollision(Player* player, Ground* ground);
 	DECLARE_RTTI(ColliderComponent, Component);
 private:
 	bool collide;

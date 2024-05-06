@@ -12,6 +12,8 @@ class InputManager;
 class PhysicManager;
 class ObjectManager;
 class RenderManager;
+class EntityManager;
+
 
 class GameEngine : public BaseObject
 {
@@ -30,8 +32,9 @@ private:
 	InputManager* m_inputManager;
 	RenderManager* m_renderManager;
 	ObjectManager* m_objectManager;
+	EntityManager* m_entityManager;
 	void Start();
-	void HandleInput(Player& player,float deltaTime);
+	void HandleInput(Player* player,float deltaTime);
 	virtual FClass GetClass() override {
 		FClass Parent = BaseObject::StaticClass();
 		return FClass("GameEngine", { Parent });

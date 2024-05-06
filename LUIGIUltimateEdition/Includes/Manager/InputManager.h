@@ -9,7 +9,7 @@ class InputManager : public BaseObject
 {
 public:
 	virtual ~InputManager();
-	void HandleInput(Player& player, float deltaTime);
+	void HandleInput(Player* player, float deltaTime);
 	static InputManager* GetInstance();
 	DECLARE_RTTI(InputManager, BaseObject);
 private:

@@ -8,16 +8,17 @@
 #include "..\..\Includes\Manager\PhysicManager.h"
 #include "..\..\Includes\Manager\RenderManager.h"
 #include "..\..\Includes\Manager\ObjectManager.h"
+#include "..\..\Includes\Manager\EntityManager.h"
 
 // Components
 #include "..\..\Includes\Utils\Template.h"
-
 #include "..\..\Includes\Components\TransformComponent.h"
 #include "..\..\Includes\Components\ColliderComponent.h"
 #include "..\..\Includes\Components\RenderComponent.h"
 
 // Objects
 #include "..\..\Includes\Object\Player.h"
+#include "..\..\Includes\Object\Ground.h"
 
 GameEngine *GameEngine::m_engine = nullptr;
 GameEngine *GameEngine::GetInstance()
@@ -40,8 +41,6 @@ GameEngine::~GameEngine()
 
 void GameEngine::RunGame()
 {
-	Player player;
-	Ground ground;
 	float changeX = 0;
 
 	if (!m_window)
@@ -51,8 +50,10 @@ void GameEngine::RunGame()
 	m_window->setView(currentView);
 	m_window->setFramerateLimit(60);
 	Start();
-	player.Start();
-	ground.Start();
+	Player* player = m_entityManager->CreateEntity<Player>("Player");
+	Ground* ground = m_entityManager->CreateEntity<Ground>("Ground");
+	player->Start();
+	ground->Start();
 
 	while (m_window->isOpen())
 	{
@@ -64,8 +65,8 @@ void GameEngine::RunGame()
 		// float changeY = m_physics->Update(deltaTime.asSeconds());
 		/*playerSprite.move(changeX, 0);*/
 		// changeX = 0;
-		m_window->draw(Cast<RenderComponent>(player.componentList.at("Render"))->spriteComp);
-		m_window->draw(Cast<RenderComponent>(ground.componentList.at("Render"))->spriteComp);
+		m_window->draw(Cast<RenderComponent>(player->componentList.at("Render"))->spriteComp);
+		m_window->draw(Cast<RenderComponent>(ground->componentList.at("Render"))->spriteComp);
 		m_window->display();
 	}
 }
@@ -76,10 +77,11 @@ void GameEngine::Start()
 	m_physicsManager = PhysicManager::GetInstance();
 	m_renderManager = RenderManager::GetInstance();
 	m_objectManager = ObjectManager::GetInstance();
+	m_entityManager = EntityManager::GetInstance();
 	SetRegistry();
 }
 
-void GameEngine::HandleInput(Player &player, float deltaTime)
+void GameEngine::HandleInput(Player* player, float deltaTime)
 {
 	m_inputManager->HandleInput(player, deltaTime);
 }
@@ -98,4 +100,5 @@ void GameEngine::SetRegistry()
 
 	// Entities
 	REGISTER_CLASS(Player);
+	REGISTER_CLASS(Ground);
 }
