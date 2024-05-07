@@ -18,10 +18,22 @@ bool ColliderComponent::OnCollision()
 	sf::FloatRect otherHitbox;
 	for(Entity* entity : EntityManager::GetInstance()->GetEntityList())
 	{
-		if (entityHitbox.intersects(Cast<RenderComponent>(entity->componentList.at("Render"))->spriteComp.getGlobalBounds()))
+		if (entityHitbox.intersects(Cast<RenderComponent>(entity->componentList.at("Render"))->spriteComp.getGlobalBounds()) && entity != obj)
 		{
 			otherHitbox = Cast<RenderComponent>(entity->componentList.at("Render"))->spriteComp.getGlobalBounds();
 			if ((entityHitbox.top +entityHitbox.height) - otherHitbox.top <= 10 )
+			{
+				return true;
+			}
+			else if (entityHitbox.top - (otherHitbox.top + otherHitbox.height) >= -10)
+			{
+				return true;
+			}
+			else if ((entityHitbox.left + entityHitbox.width) - otherHitbox.left <= 10)
+			{
+				return true;
+			}
+			else if (entityHitbox.left - (otherHitbox.left + otherHitbox.width) >= -10)
 			{
 				return true;
 			}
