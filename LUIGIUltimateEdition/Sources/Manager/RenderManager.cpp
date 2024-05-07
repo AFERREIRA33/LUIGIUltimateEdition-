@@ -1,4 +1,4 @@
-#pragma once
+     #pragma once
 #include "..\..\Includes\Manager\RenderManager.h"
 
 RenderManager* RenderManager::m_renderManager = nullptr;

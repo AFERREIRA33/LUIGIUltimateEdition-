@@ -44,7 +44,7 @@ void GameEngine::RunGame()
 	float changeX = 0;
 
 	if (!m_window)
-		m_window = new sf::RenderWindow(sf::VideoMode(960, 540), "LUIGI Ultimate Edition", sf::Style::Titlebar | sf::Style::Close);
+		m_window = new sf::RenderWindow(sf::VideoMode(1000, 540), "LUIGI Ultimate Edition", sf::Style::Titlebar | sf::Style::Close);
 	sf::View currentView = m_window->getView();
 	currentView.reset(sf::FloatRect(0, 0, m_window->getSize().x, m_window->getSize().y));
 	m_window->setView(currentView);
@@ -65,6 +65,7 @@ void GameEngine::RunGame()
 		// float changeY = m_physics->Update(deltaTime.asSeconds());
 		/*playerSprite.move(changeX, 0);*/
 		// changeX = 0;
+		player->Update();
 		m_window->draw(Cast<RenderComponent>(player->componentList.at("Render"))->spriteComp);
 		m_window->draw(Cast<RenderComponent>(ground->componentList.at("Render"))->spriteComp);
 		m_window->display();
