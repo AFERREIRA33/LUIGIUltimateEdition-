@@ -18,7 +18,7 @@ public:
 	static PhysicManager* GetInstance();
 	bool isOnGround;
 	bool isJumping;
-	bool direction;
+	int direction = 1;
 	FVector2D velocity;
 	DECLARE_RTTI(PhysicManager, BaseObject);
 private:
