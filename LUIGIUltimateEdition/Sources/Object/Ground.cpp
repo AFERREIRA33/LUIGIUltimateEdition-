@@ -4,6 +4,7 @@ void Ground::Start()
 {
 	transformInitial.x = -500;
 	transformInitial.y = 500;
+	Tag = "Ground";
 	TransformComponent* c_transform = ObjectManager::GetInstance()->CreateObject<TransformComponent>(TransformComponent::StaticClass().ClassID);
 	RenderComponent* c_render = ObjectManager::GetInstance()->CreateObject<RenderComponent>(RenderComponent::StaticClass().ClassID);
 	componentList.insert(std::make_pair("Transform", c_transform));

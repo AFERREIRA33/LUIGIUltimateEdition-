@@ -21,6 +21,7 @@ public:
 	virtual void Start();
 	virtual ~Entity();
 	int ID;
+	std::string Tag;
 	sf::Texture texture;
 	std::unordered_map<std::string, Component*> componentList;
 	FVector2D transformInitial;
