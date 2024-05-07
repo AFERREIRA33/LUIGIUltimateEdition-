@@ -14,9 +14,7 @@ public:
 	DECLARE_RTTI(InputManager, BaseObject);
 private:
 	InputManager();
-	bool moveR = false;
-	bool moveL = false;
-	bool jump = false;
+
 	static InputManager* m_instance;
 	sf::RenderWindow* m_window;
 };

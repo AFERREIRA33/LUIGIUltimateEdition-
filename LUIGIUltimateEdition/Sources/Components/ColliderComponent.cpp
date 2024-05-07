@@ -12,10 +12,11 @@ ColliderComponent::~ColliderComponent()
 	delete collider;
 }
 
-bool ColliderComponent::OnCollision()
+std::vector<std::string> ColliderComponent::OnCollision()
 {
 	sf::FloatRect entityHitbox = Cast<RenderComponent>(obj->componentList.at("Render"))->spriteComp.getGlobalBounds();
 	sf::FloatRect otherHitbox;
+	collisionActive.clear();
 	for(Entity* entity : EntityManager::GetInstance()->GetEntityList())
 	{
 		if (entityHitbox.intersects(Cast<RenderComponent>(entity->componentList.at("Render"))->spriteComp.getGlobalBounds()) && entity != obj)
@@ -23,23 +24,23 @@ bool ColliderComponent::OnCollision()
 			otherHitbox = Cast<RenderComponent>(entity->componentList.at("Render"))->spriteComp.getGlobalBounds();
 			if ((entityHitbox.top +entityHitbox.height) - otherHitbox.top <= 10 )
 			{
-				return true;
+				collisionActive.push_back("Down");
 			}
 			else if (entityHitbox.top - (otherHitbox.top + otherHitbox.height) >= -10)
 			{
-				return true;
+				collisionActive.push_back("Up");
 			}
-			else if ((entityHitbox.left + entityHitbox.width) - otherHitbox.left <= 10)
+			else if ((entityHitbox.left + entityHitbox.width) - otherHitbox.left <= 30)
 			{
-				return true;
+				collisionActive.push_back("Right"); 
 			}
-			else if (entityHitbox.left - (otherHitbox.left + otherHitbox.width) >= -10)
+			else if (entityHitbox.left - (otherHitbox.left + otherHitbox.width) >= -30)
 			{
-				return true;
+				collisionActive.push_back("Left");
 			}
 			
 		}
 	}
-
-	return false;
+	std::cout << collisionActive.size() << std::endl;
+	return collisionActive;
 }

@@ -12,9 +12,9 @@ class ColliderComponent : public Component
 {
 public:
 	virtual ~ColliderComponent();
-	bool OnCollision();
+	std::vector<std::string> OnCollision();
 	Entity* obj;
-	
+	std::vector<std::string> collisionActive;
 	DECLARE_RTTI(ColliderComponent, Component);
 private:
 	bool collide;
