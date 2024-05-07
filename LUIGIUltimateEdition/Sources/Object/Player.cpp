@@ -9,6 +9,7 @@ void Player::Start()
 {
 	transformInitial.x = 500;
 	transformInitial.y = 400;
+	Tag = "Player";
 	TransformComponent* c_transform = ObjectManager::GetInstance()->CreateObject<TransformComponent>(TransformComponent::StaticClass().ClassID);
 	RenderComponent* c_render = ObjectManager::GetInstance()->CreateObject<RenderComponent>(RenderComponent::StaticClass().ClassID);
 	ColliderComponent* c_collider = ObjectManager::GetInstance()->CreateObject<ColliderComponent>(ColliderComponent::StaticClass().ClassID);
@@ -20,6 +21,7 @@ void Player::Start()
 	{
 	}
 	Cast<RenderComponent>(componentList.at("Render"))->LoadSprite(texture, Cast<TransformComponent>(componentList.at("Transform"))->position);
+	Cast<ColliderComponent>(componentList.at("Collider"))->obj = this;
 	
 }
 

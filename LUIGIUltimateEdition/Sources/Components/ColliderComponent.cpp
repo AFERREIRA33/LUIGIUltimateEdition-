@@ -2,6 +2,8 @@
 #include "..\..\Includes\Components\ColliderComponent.h"
 #include "..\..\Includes\Object\Player.h"
 #include "..\..\Includes\Object\Ground.h"
+#include "..\..\Includes\Manager\EntityManager.h"
+#include "..\..\Includes\Object\Entity.h"
 
 ColliderComponent* ColliderComponent::collider = nullptr;
 
@@ -10,20 +12,22 @@ ColliderComponent::~ColliderComponent()
 	delete collider;
 }
 
-bool ColliderComponent::OnCollision(Player* player,Ground* ground)
+bool ColliderComponent::OnCollision()
 {
-
-	if (Cast<RenderComponent>(ground->componentList.at("Render"))->spriteComp.getGlobalBounds().intersects(Cast<RenderComponent>(player->componentList.at("Render"))->spriteComp.getGlobalBounds())) {
-		return true;
+	sf::FloatRect entityHitbox = Cast<RenderComponent>(obj->componentList.at("Render"))->spriteComp.getGlobalBounds();
+	sf::FloatRect otherHitbox;
+	for(Entity* entity : EntityManager::GetInstance()->GetEntityList())
+	{
+		if (entityHitbox.intersects(Cast<RenderComponent>(entity->componentList.at("Render"))->spriteComp.getGlobalBounds()))
+		{
+			otherHitbox = Cast<RenderComponent>(entity->componentList.at("Render"))->spriteComp.getGlobalBounds();
+			if ((entityHitbox.top +entityHitbox.height) - otherHitbox.top <= 10 )
+			{
+				return true;
+			}
+			
+		}
 	}
-	//for (Entity entity : entities) {
-	//	if (entity.sprite.getGlobalBounds().intersects(this))
-	//	{
-	//		collide = true;
-	//	}
-	//	else {
-	//		collide = false;
-	//	}
-	//}
+
 	return false;
 }
