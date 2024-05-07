@@ -40,10 +40,10 @@ void PhysicManager::Update(Player* player, Ground* ground, float deltaTime)
 			velocity += 5 * deltaTime * 2;
 			Cast<RenderComponent>(player->componentList.at("Render"))->spriteComp.move(velocity.x, velocity.y);
 		}
-		/*else {
+		else {
 			velocity.y += 5 * deltaTime * 2;
-			Cast<RenderComponent>(player->componentList.at("Render"))->spriteComp.move(velocity.x, velocity.y);
-		}*/
+			Cast<RenderComponent>(player->componentList.at("Render"))->spriteComp.move(0, velocity.y);
+		}
 	}
 	else
 	{

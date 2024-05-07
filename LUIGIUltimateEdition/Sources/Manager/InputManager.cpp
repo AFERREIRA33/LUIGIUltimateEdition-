@@ -38,9 +38,9 @@ void InputManager::HandleInput(Player* player, float deltaTime) {
 			PhysicManager::GetInstance()->direction = 1;
 			player->PlayerMove(200, deltaTime);
 		}
-		/*if (!sf::Keyboard::isKeyPressed(sf::Keyboard::D) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) {
+		if (!sf::Keyboard::isKeyPressed(sf::Keyboard::D) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) {
 			PhysicManager::GetInstance()->direction = 0;
-		}*/
+		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && !player->isJumping)
 		{
 
