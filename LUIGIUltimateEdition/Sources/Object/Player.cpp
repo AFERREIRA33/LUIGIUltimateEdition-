@@ -6,10 +6,10 @@ Player::~Player()
 {
 }
 
-void Player::Start()
+void Player::Start(float x, float y)
 {
-	transformInitial.x = 500;
-	transformInitial.y = 400;
+	transformInitial.x = x;
+	transformInitial.y = y;
 	Tag = "Player";
 	TransformComponent* c_transform = ObjectManager::GetInstance()->CreateObject<TransformComponent>(TransformComponent::StaticClass().ClassID);
 	RenderComponent* c_render = ObjectManager::GetInstance()->CreateObject<RenderComponent>(RenderComponent::StaticClass().ClassID);
@@ -23,28 +23,34 @@ void Player::Start()
 	}
 	Cast<RenderComponent>(componentList.at("Render"))->LoadSprite(texture, Cast<TransformComponent>(componentList.at("Transform"))->position);
 	Cast<ColliderComponent>(componentList.at("Collider"))->obj = this;
-	
+	size = Cast<RenderComponent>(componentList.at("Render"))->spriteComp.getGlobalBounds().getSize().x;
 }
 
 void Player::Update() {
-	std::cout << Cast<TransformComponent>(componentList.at("Transform"))->position.ToString() << std::endl;
+	//std::cout << Cast<TransformComponent>(componentList.at("Transform"))->position.ToString() << std::endl;
+	//std::cout << Cast<RenderComponent>(componentList.at("Render"))->spriteComp.getGlobalBounds().getSize().x << std::endl;
 }
 void Player::PlayerMove(float speed,float deltaTime)
 {
-	Cast<RenderComponent>(componentList.at("Render"))->spriteComp.move(speed * deltaTime,0);
-	Cast<TransformComponent>(componentList.at("Transform"))->position = FVector2D(Cast<RenderComponent>(componentList.at("Render"))->spriteComp.getPosition().x, Cast<RenderComponent>(componentList.at("Render"))->spriteComp.getPosition().y);
+	ChangePosition(FVector2D(speed * deltaTime, 0));
 }
 
 void Player::PlayerJump(FVector2D velocity,float deltaTime)
 {
 	if (!isJumping)
 	{
-		Cast<RenderComponent>(componentList.at("Render"))->spriteComp.move(velocity.x, velocity.y);
-		Cast<TransformComponent>(componentList.at("Transform"))->position = FVector2D(Cast<RenderComponent>(componentList.at("Render"))->spriteComp.getPosition().x, Cast<RenderComponent>(componentList.at("Render"))->spriteComp.getPosition().y);
+		ChangePosition(velocity);
 		isJumping = true;
 	}
 }
+void Player::ChangePosition(FVector2D pos) {
 
+	pos.y = Cast<TransformComponent>(componentList.at("Transform"))->position.y + pos.y;
+	pos.x = Cast<TransformComponent>(componentList.at("Transform"))->position.x + pos.x;
+	Cast<TransformComponent>(componentList.at("Transform"))->position = pos;
+	//Cast<RenderComponent>(componentList.at("Render"))->spriteComp.setPosition(sf::Vector2f(pos.x, pos.y));
+	
+}
 void Player::Collide()
 {
 }

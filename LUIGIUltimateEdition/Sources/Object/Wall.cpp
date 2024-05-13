@@ -1,10 +1,10 @@
 #include "..\..\Includes\Object\Wall.h"
 
 
-void Wall::Start()
+void Wall::Start(float x, float y)
 {
-	transformInitial.x = 800;
-	transformInitial.y = 300;
+	transformInitial.x = x;
+	transformInitial.y = y;
 	Tag = "Ground";
 	TransformComponent* c_transform = ObjectManager::GetInstance()->CreateObject<TransformComponent>(TransformComponent::StaticClass().ClassID);
 	RenderComponent* c_render = ObjectManager::GetInstance()->CreateObject<RenderComponent>(RenderComponent::StaticClass().ClassID);
@@ -15,4 +15,5 @@ void Wall::Start()
 	{
 	}
 	Cast<RenderComponent>(componentList.at("Render"))->LoadSprite(texture, Cast<TransformComponent>(componentList.at("Transform"))->position);
+	size = Cast<RenderComponent>(componentList.at("Render"))->spriteComp.getGlobalBounds().getSize().x;
 }

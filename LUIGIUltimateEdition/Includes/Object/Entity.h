@@ -18,13 +18,14 @@ class Entity : public BaseObject
 {
 public:
 	Entity();
-	virtual void Start();
 	virtual ~Entity();
+	virtual void Start(float x, float y) = 0;
 	int ID;
 	std::string Tag;
 	sf::Texture texture;
 	std::unordered_map<std::string, Component*> componentList;
 	FVector2D transformInitial;
+	int size;
 	DECLARE_RTTI(Entity, BaseObject);
 };
 

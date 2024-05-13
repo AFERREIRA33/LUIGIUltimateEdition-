@@ -14,7 +14,7 @@ class PhysicManager;
 class ObjectManager;
 class RenderManager;
 class EntityManager;
-
+class CameraManager;
 
 class GameEngine : public BaseObject
 {
@@ -34,6 +34,7 @@ private:
 	RenderManager* m_renderManager;
 	ObjectManager* m_objectManager;
 	EntityManager* m_entityManager;
+	CameraManager* m_cameraManager;
 	void Start();
 	void HandleInput(Player* player,float deltaTime);
 	virtual FClass GetClass() override {

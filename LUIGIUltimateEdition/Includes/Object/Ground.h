@@ -6,7 +6,7 @@ class Ground : public Entity
 {
 public:
 	Ground() = default;
-	void Start() override;
+	void Start(float x, float y) override;
 	DECLARE_RTTI(Ground, Entity);
 };
 

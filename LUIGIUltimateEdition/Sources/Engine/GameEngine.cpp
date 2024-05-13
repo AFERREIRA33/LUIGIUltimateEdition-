@@ -9,6 +9,7 @@
 #include "..\..\Includes\Manager\RenderManager.h"
 #include "..\..\Includes\Manager\ObjectManager.h"
 #include "..\..\Includes\Manager\EntityManager.h"
+#include "..\..\Includes\Manager\CameraManager.h"
 
 // Components
 #include "..\..\Includes\Utils\Template.h"
@@ -54,15 +55,17 @@ void GameEngine::RunGame()
 	Player* player = m_entityManager->CreateEntity<Player>("Player");
 	Ground* ground = m_entityManager->CreateEntity<Ground>("Ground");
 	Wall* wall = m_entityManager->CreateEntity<Wall>("Wall");
-	player->Start();
-	ground->Start();
-	wall->Start();
+	player->Start(500, 400);
+	ground->Start(250, 500);
+	wall->Start(800, 300);
+	m_cameraManager->player = player;
 	while (m_window->isOpen())
 	{
 		deltaTime = deltaClock.restart().asSeconds();
 
 		m_window->clear();
 		HandleInput(player, deltaTime);
+		m_cameraManager->SetScreenPosition();
 		m_physicsManager->Update(player, ground, deltaTime);
 		// float changeY = m_physics->Update(deltaTime.asSeconds());
 		/*playerSprite.move(changeX, 0);*/
@@ -82,6 +85,7 @@ void GameEngine::Start()
 	m_renderManager = RenderManager::GetInstance();
 	m_objectManager = ObjectManager::GetInstance();
 	m_entityManager = EntityManager::GetInstance();
+	m_cameraManager = CameraManager::GetInstance();
 	SetRegistry();
 }
 

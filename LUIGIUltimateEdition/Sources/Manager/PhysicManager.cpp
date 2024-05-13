@@ -44,11 +44,12 @@ void PhysicManager::Update(Player* player, Ground* ground, float deltaTime)
 			velocity += 5 * deltaTime * 2;
 			if (canMoveL)
 			{
-				Cast<RenderComponent>(player->componentList.at("Render"))->spriteComp.move(-velocity.x, velocity.y);
+				player->ChangePosition(FVector2D(-velocity.x, velocity.y));
 			}
 			else
 			{
-				Cast<RenderComponent>(player->componentList.at("Render"))->spriteComp.move(0, velocity.y);
+				player->ChangePosition(FVector2D(0, velocity.y));
+
 			}
 			
 		}
@@ -57,17 +58,17 @@ void PhysicManager::Update(Player* player, Ground* ground, float deltaTime)
 			velocity += 5 * deltaTime * 2;
 			if (canMoveR)
 			{
-				Cast<RenderComponent>(player->componentList.at("Render"))->spriteComp.move(velocity.x, velocity.y);
+				player->ChangePosition(FVector2D(velocity.x, velocity.y));
 			}
 			else
 			{
-				Cast<RenderComponent>(player->componentList.at("Render"))->spriteComp.move(0, velocity.y);
+				player->ChangePosition(FVector2D(0, velocity.y));
 			}
 			
 		}
 		else {
 			velocity.y += 5 * deltaTime * 2;
-			Cast<RenderComponent>(player->componentList.at("Render"))->spriteComp.move(0, velocity.y);
+			player->ChangePosition(FVector2D(0, velocity.y));
 		}
 	}
 	else
@@ -80,7 +81,7 @@ void PhysicManager::Update(Player* player, Ground* ground, float deltaTime)
 void PhysicManager::AddForce()
 {
 
-	velocity.x = 2;
+	velocity.x = 0;
 	velocity.y = -4;
 }
 

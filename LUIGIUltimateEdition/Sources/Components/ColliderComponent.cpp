@@ -41,6 +41,5 @@ std::vector<std::string> ColliderComponent::OnCollision()
 			
 		}
 	}
-	std::cout << collisionActive.size() << std::endl;
 	return collisionActive;
 }

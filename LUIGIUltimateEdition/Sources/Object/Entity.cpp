@@ -5,10 +5,6 @@ Entity::Entity()
 {
 }
 
-void Entity::Start()
-{
-}
-
 Entity::~Entity()
 {
 }
