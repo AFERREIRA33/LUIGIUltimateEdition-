@@ -28,7 +28,6 @@ void Player::Start(float x, float y)
 
 void Player::Update() {
 	//std::cout << Cast<TransformComponent>(componentList.at("Transform"))->position.ToString() << std::endl;
-	//std::cout << Cast<RenderComponent>(componentList.at("Render"))->spriteComp.getGlobalBounds().getSize().x << std::endl;
 }
 void Player::PlayerMove(float speed,float deltaTime)
 {
@@ -44,11 +43,9 @@ void Player::PlayerJump(FVector2D velocity,float deltaTime)
 	}
 }
 void Player::ChangePosition(FVector2D pos) {
-
 	pos.y = Cast<TransformComponent>(componentList.at("Transform"))->position.y + pos.y;
 	pos.x = Cast<TransformComponent>(componentList.at("Transform"))->position.x + pos.x;
 	Cast<TransformComponent>(componentList.at("Transform"))->position = pos;
-	//Cast<RenderComponent>(componentList.at("Render"))->spriteComp.setPosition(sf::Vector2f(pos.x, pos.y));
 	
 }
 void Player::Collide()

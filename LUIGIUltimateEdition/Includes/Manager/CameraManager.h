@@ -12,7 +12,10 @@ public:
 	float position;
 	Player* player;
 private:
-	CameraManager() = default;
+	CameraManager();
 	static CameraManager* m_instance;
+	float minPosition;
+	float maxPosition;
+	float levelSize;
 };
 

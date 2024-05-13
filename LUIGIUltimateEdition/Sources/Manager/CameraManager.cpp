@@ -23,7 +23,7 @@ void CameraManager::SetScreenPosition() {
 	FVector2D objTransform;
 	FVector2D playerPos = Cast<TransformComponent>(player->componentList.at("Transform"))->position;
 	float camCenter = 500;
-	if (playerPos.x >=  camCenter) {
+	if (playerPos.x >=  minPosition && playerPos.x <= maxPosition) {
 		for (Entity* e : EntityManager::GetInstance()->GetEntityList())
 		{
 			if (e->Tag != "Player") {
@@ -37,6 +37,17 @@ void CameraManager::SetScreenPosition() {
 		}
 	}
 	else {
-		Cast<RenderComponent>(player->componentList.at("Render"))->spriteComp.setPosition(playerPos.x, playerPos.y);
+		if (playerPos.x >= minPosition) {
+			Cast<RenderComponent>(player->componentList.at("Render"))->spriteComp.setPosition(playerPos.x - levelSize, playerPos.y);
+		}
+		else {
+			Cast<RenderComponent>(player->componentList.at("Render"))->spriteComp.setPosition(playerPos.x, playerPos.y);
+		}
 	}
+}
+
+CameraManager::CameraManager() {
+	minPosition = 500;
+	maxPosition = 1000;
+	levelSize = maxPosition - minPosition;
 }
