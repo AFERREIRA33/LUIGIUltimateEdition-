@@ -21,7 +21,6 @@ void InputManager::HandleInput(Player* player, float deltaTime) {
 	
 	while (m_window->pollEvent(e))
 	{
-		std::cout << e.Count << std::endl;
 		switch (e.type)
 		{
 		case event::Closed:

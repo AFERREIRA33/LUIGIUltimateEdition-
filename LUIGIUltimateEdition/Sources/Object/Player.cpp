@@ -27,7 +27,7 @@ void Player::Start()
 }
 
 void Player::Update() {
-	//std::cout << Cast<TransformComponent>(componentList.at("Transform"))->position.ToString() << std::endl;
+	std::cout << Cast<TransformComponent>(componentList.at("Transform"))->position.ToString() << std::endl;
 }
 void Player::PlayerMove(float speed,float deltaTime)
 {
