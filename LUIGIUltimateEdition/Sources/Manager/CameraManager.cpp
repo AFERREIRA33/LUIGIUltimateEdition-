@@ -23,15 +23,20 @@ void CameraManager::SetScreenPosition() {
 	FVector2D objTransform;
 	FVector2D playerPos = Cast<TransformComponent>(player->componentList.at("Transform"))->position;
 	float camCenter = 500;
-	for(Entity* e : EntityManager::GetInstance()->GetEntityList())
-	{
-		if (e->Tag != "Player") {
-			objTransform = Cast<TransformComponent>(e->componentList.at("Transform"))->position;
-			newPosScreen.x = objTransform.x - (playerPos.x - camCenter);
-			Cast<RenderComponent>(e->componentList.at("Render"))->spriteComp.setPosition(newPosScreen.x, objTransform.y);
+	if (playerPos.x >=  camCenter) {
+		for (Entity* e : EntityManager::GetInstance()->GetEntityList())
+		{
+			if (e->Tag != "Player") {
+				objTransform = Cast<TransformComponent>(e->componentList.at("Transform"))->position;
+				newPosScreen.x = objTransform.x - (playerPos.x - camCenter);
+				Cast<RenderComponent>(e->componentList.at("Render"))->spriteComp.setPosition(newPosScreen.x, objTransform.y);
+			}
+			else {
+				Cast<RenderComponent>(player->componentList.at("Render"))->spriteComp.setPosition(playerRendX, playerPos.y);
+			}
 		}
-		else {
-			Cast<RenderComponent>(player->componentList.at("Render"))->spriteComp.setPosition(playerRendX, playerPos.y);
-		}
+	}
+	else {
+		Cast<RenderComponent>(player->componentList.at("Render"))->spriteComp.setPosition(playerPos.x, playerPos.y);
 	}
 }
