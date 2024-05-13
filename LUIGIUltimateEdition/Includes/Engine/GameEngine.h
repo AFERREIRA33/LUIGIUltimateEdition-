@@ -6,6 +6,7 @@
 #include "..\Components\BaseObject.h"
 #include "..\..\Includes\Object\Player.h"
 #include "..\..\Includes\Object\Ground.h"
+#include "..\..\Includes\Object\Wall.h"
 
 
 class InputManager;

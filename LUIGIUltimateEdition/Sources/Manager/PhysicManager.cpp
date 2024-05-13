@@ -1,5 +1,6 @@
 #pragma once
 #include "..\..\Includes\Manager\PhysicManager.h"
+
 #include "..\..\Includes\Object\Player.h"
 #include "..\..\Includes\Object\Ground.h"
 
@@ -27,18 +28,42 @@ PhysicManager::PhysicManager()
 
 void PhysicManager::Update(Player* player, Ground* ground, float deltaTime)
 {
-	isOnGround = Cast<ColliderComponent>(player->componentList.at("Collider"))->OnCollision();
+	isOnGround = false;
+	canMoveR = true;
+	canMoveL = true;
+	canJump = true;
+	collisionActive = Cast<ColliderComponent>(player->componentList.at("Collider"))->OnCollision();
+	
+	checkCollision(collisionActive);
+
 	if (!isOnGround)
 	{
+		
 		if (direction == -1)
 		{
 			velocity += 5 * deltaTime * 2;
-			Cast<RenderComponent>(player->componentList.at("Render"))->spriteComp.move(-velocity.x, velocity.y);
+			if (canMoveL)
+			{
+				Cast<RenderComponent>(player->componentList.at("Render"))->spriteComp.move(-velocity.x, velocity.y);
+			}
+			else
+			{
+				Cast<RenderComponent>(player->componentList.at("Render"))->spriteComp.move(0, velocity.y);
+			}
+			
 		}
 		else if (direction == 1)
 		{
 			velocity += 5 * deltaTime * 2;
-			Cast<RenderComponent>(player->componentList.at("Render"))->spriteComp.move(velocity.x, velocity.y);
+			if (canMoveR)
+			{
+				Cast<RenderComponent>(player->componentList.at("Render"))->spriteComp.move(velocity.x, velocity.y);
+			}
+			else
+			{
+				Cast<RenderComponent>(player->componentList.at("Render"))->spriteComp.move(0, velocity.y);
+			}
+			
 		}
 		else {
 			velocity.y += 5 * deltaTime * 2;
@@ -49,6 +74,7 @@ void PhysicManager::Update(Player* player, Ground* ground, float deltaTime)
 	{
 		player->isJumping = false;
 	}
+	
 }
 
 void PhysicManager::AddForce()
@@ -56,7 +82,28 @@ void PhysicManager::AddForce()
 
 	velocity.x = 2;
 	velocity.y = -4;
+}
 
+void PhysicManager::checkCollision(std::vector<std::string> collisionActive)
+{
+	for (std::string col : collisionActive) {
+		if (col == "Down")
+		{
+			isOnGround = true;
+		}
+		if (col == "Up")
+		{
+			canJump = false;
+		}
+		if (col == "Left")
+		{
+			canMoveL = false;
+		}
+		if (col == "Right")
+		{
+			canMoveR = false;
+		}
 
+	}
 }
 

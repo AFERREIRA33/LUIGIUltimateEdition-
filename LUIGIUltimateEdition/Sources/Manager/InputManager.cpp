@@ -28,13 +28,13 @@ void InputManager::HandleInput(Player* player, float deltaTime) {
 			break;
 		}
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && PhysicManager::GetInstance()->canMoveL)
 		{
 			PhysicManager::GetInstance()->direction = -1;
 			player->PlayerMove(-200,deltaTime);
 		}
 		
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && PhysicManager::GetInstance()->canMoveR)
 		{
 			PhysicManager::GetInstance()->direction = 1;
 			player->PlayerMove(200, deltaTime);
@@ -42,7 +42,7 @@ void InputManager::HandleInput(Player* player, float deltaTime) {
 		if (!sf::Keyboard::isKeyPressed(sf::Keyboard::D) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) {
 			PhysicManager::GetInstance()->direction = 0;
 		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && !player->isJumping)
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && !player->isJumping && PhysicManager::GetInstance()->canJump)
 		{
 			PhysicManager::GetInstance()->AddForce();
 			player->PlayerJump(PhysicManager::GetInstance()->velocity, deltaTime);

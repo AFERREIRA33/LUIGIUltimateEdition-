@@ -19,6 +19,7 @@
 // Objects
 #include "..\..\Includes\Object\Player.h"
 #include "..\..\Includes\Object\Ground.h"
+#include "..\..\Includes\Object\Wall.h"
 
 GameEngine *GameEngine::m_engine = nullptr;
 GameEngine *GameEngine::GetInstance()
@@ -52,9 +53,10 @@ void GameEngine::RunGame()
 	Start();
 	Player* player = m_entityManager->CreateEntity<Player>("Player");
 	Ground* ground = m_entityManager->CreateEntity<Ground>("Ground");
+	Wall* wall = m_entityManager->CreateEntity<Wall>("Wall");
 	player->Start();
 	ground->Start();
-
+	wall->Start();
 	while (m_window->isOpen())
 	{
 		deltaTime = deltaClock.restart().asSeconds();
@@ -68,6 +70,7 @@ void GameEngine::RunGame()
 		player->Update();
 		m_window->draw(Cast<RenderComponent>(player->componentList.at("Render"))->spriteComp);
 		m_window->draw(Cast<RenderComponent>(ground->componentList.at("Render"))->spriteComp);
+		m_window->draw(Cast<RenderComponent>(wall->componentList.at("Render"))->spriteComp);
 		m_window->display();
 	}
 }
@@ -102,4 +105,5 @@ void GameEngine::SetRegistry()
 	// Entities
 	REGISTER_CLASS(Player);
 	REGISTER_CLASS(Ground);
+	REGISTER_CLASS(Wall);
 }
