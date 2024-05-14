@@ -59,6 +59,7 @@ void Player::Death()
 	if (Cast<TransformComponent>(componentList.at("Transform"))->position.y >= GameEngine::GetInstance()->screenSize.y)
 	{
 		Cast<LifeComponent>(componentList.at("Life"))->life -= 1;
+
 		Cast<TransformComponent>(componentList.at("Transform"))->position = transformInitial;
 		if (Cast<LifeComponent>(componentList.at("Life"))->life < 0)
 		{

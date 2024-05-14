@@ -10,6 +10,7 @@
 #include "..\..\Includes\Manager\ObjectManager.h"
 #include "..\..\Includes\Manager\EntityManager.h"
 #include "..\..\Includes\Manager\CameraManager.h"
+#include "..\..\Includes\Manager\HudManager.h"
 
 // Components
 #include "..\..\Includes\Utils\Template.h"
@@ -22,6 +23,7 @@
 #include "..\..\Includes\Object\Player.h"
 #include "..\..\Includes\Object\Ground.h"
 #include "..\..\Includes\Object\Wall.h"
+
 
 GameEngine *GameEngine::m_engine = nullptr;
 GameEngine *GameEngine::GetInstance()
@@ -40,6 +42,8 @@ GameEngine::~GameEngine()
 	delete m_inputManager;
 	delete m_renderManager;
 	delete m_physicsManager;
+	delete m_cameraManager;
+	delete m_hudManager;
 }
 
 void GameEngine::RunGame()
@@ -54,6 +58,8 @@ void GameEngine::RunGame()
 	m_window->setFramerateLimit(60);
 	Start();
 	CreateObject();
+
+
 	while (m_window->isOpen())
 	{
 		deltaTime = deltaClock.restart().asSeconds();
@@ -63,8 +69,15 @@ void GameEngine::RunGame()
 		m_cameraManager->SetScreenPosition();
 		m_physicsManager->Update(player, deltaTime);
 		m_renderManager->DrawEntity();
+		m_hudManager->UpdateHud();
+		m_hudManager->DrawText();
 		m_window->display();
 	}
+}
+
+Player* GameEngine::GetPlayer()
+{
+	return player;
 }
 
 void GameEngine::Start()
@@ -75,6 +88,7 @@ void GameEngine::Start()
 	m_objectManager = ObjectManager::GetInstance();
 	m_entityManager = EntityManager::GetInstance();
 	m_cameraManager = CameraManager::GetInstance();
+	m_hudManager = HudManager::GetInstance();
 	SetRegistry();
 }
 
@@ -92,9 +106,12 @@ void GameEngine::CreateObject() {
 	player = m_entityManager->CreateEntity<Player>("Player");
 	Ground* ground = m_entityManager->CreateEntity<Ground>("Ground");
 	Wall* wall = m_entityManager->CreateEntity<Wall>("Wall");
+
 	player->Start(500, 400);
 	ground->Start(0, 500);
 	wall->Start(800, 300);
+
+	
 	m_cameraManager->player = player;
 }
 void GameEngine::SetRegistry()
@@ -110,4 +127,5 @@ void GameEngine::SetRegistry()
 	REGISTER_CLASS(Player);
 	REGISTER_CLASS(Ground);
 	REGISTER_CLASS(Wall);
+
 }

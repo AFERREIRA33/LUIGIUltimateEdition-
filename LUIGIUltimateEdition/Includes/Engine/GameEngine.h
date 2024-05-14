@@ -7,6 +7,7 @@
 #include "..\..\Includes\Object\Player.h"
 #include "..\..\Includes\Object\Ground.h"
 #include "..\..\Includes\Object\Wall.h"
+#include "..\..\Includes\Object\Text.h"
 
 
 class InputManager;
@@ -16,6 +17,7 @@ class RenderManager;
 class EntityManager;
 class CameraManager;
 class Player;
+class HudManager;
 
 class GameEngine : public BaseObject
 {
@@ -23,6 +25,7 @@ public:
 	static GameEngine* GetInstance();
 	virtual ~GameEngine();
 	void RunGame();
+	Player* GetPlayer();
 	sf::RenderWindow* GetWindow();
 	sf::Clock deltaClock;
 	float deltaTime;
@@ -37,7 +40,9 @@ private:
 	ObjectManager* m_objectManager;
 	EntityManager* m_entityManager;
 	CameraManager* m_cameraManager;
+	HudManager* m_hudManager;
 	Player* player;
+	Text* text;
 	void Start();
 	void HandleInput(Player* player,float deltaTime);
 	virtual FClass GetClass() override {

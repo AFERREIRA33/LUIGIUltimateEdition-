@@ -55,8 +55,10 @@ void CameraManager::SetScreenPosition() {
 	}
 }
 
+
 CameraManager::CameraManager() {
 	minPosition = -1000;
 	maxPosition = 1000;
 	levelSize = maxPosition - minPosition;
 }
+
