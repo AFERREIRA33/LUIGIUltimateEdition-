@@ -19,7 +19,7 @@ std::vector<std::string> ColliderComponent::OnCollision()
 	collisionActive.clear();
 	for(Entity* entity : EntityManager::GetInstance()->GetEntityList())
 	{
-		if (entityHitbox.intersects(Cast<RenderComponent>(entity->componentList.at("Render"))->spriteComp.getGlobalBounds()) && entity != obj)
+		if (entityHitbox.intersects(Cast<RenderComponent>(entity->componentList.at("Render"))->spriteComp.getGlobalBounds()) && entity != obj && entity->Tag != "BackGround")
 		{
 			otherHitbox = Cast<RenderComponent>(entity->componentList.at("Render"))->spriteComp.getGlobalBounds();
 			if ((entityHitbox.top + entityHitbox.height) - otherHitbox.top <= 10 )

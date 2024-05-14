@@ -18,7 +18,6 @@ CameraManager::~CameraManager() {
 }
 
 void CameraManager::SetScreenPosition() {
-	float playerRendX = Cast<RenderComponent>(player->componentList.at("Render"))->spriteComp.getPosition().x;
 	FVector2D newPosOnScreen;
 	float posOnScreenRightCorner;
 	FVector2D objTransform;
@@ -41,7 +40,7 @@ void CameraManager::SetScreenPosition() {
 				}
 			}
 			else {
-				Cast<RenderComponent>(player->componentList.at("Render"))->spriteComp.setPosition(playerRendX, playerPos.y);
+				Cast<RenderComponent>(player->componentList.at("Render"))->spriteComp.setPosition(camCenter, playerPos.y);
 			}
 		}
 	}
@@ -57,6 +56,6 @@ void CameraManager::SetScreenPosition() {
 
 CameraManager::CameraManager() {
 	minPosition = 500;
-	maxPosition = 1500;
+	maxPosition = 1200;
 	levelSize = maxPosition - minPosition;
 }

@@ -58,11 +58,11 @@ void GameEngine::RunGame()
 	while (m_window->isOpen())
 	{
 		deltaTime = deltaClock.restart().asSeconds();
-		player->Update();
-		m_window->clear();
 		HandleInput(player, deltaTime);
+		player->Update();
 		m_cameraManager->SetScreenPosition();
 		m_physicsManager->Update(player, deltaTime);
+		m_window->clear();
 		m_renderManager->DrawEntity();
 		m_window->display();
 	}
@@ -97,7 +97,7 @@ void GameEngine::CreateObject() {
 	player->Start(500, 400);
 	
 	Ground* ground = m_entityManager->CreateEntity<Ground>("Ground");
-	ground->Start(0, 500);
+	ground->Start(-20, 500);
 	
 	/*Wall* wall = m_entityManager->CreateEntity<Wall>("Wall");
 	wall->Start(800, 300);*/

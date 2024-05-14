@@ -38,7 +38,6 @@ void PhysicManager::Update(Player* player, float deltaTime)
 
 	if (!isOnGround)
 	{
-		
 		if (direction == -1)
 		{
 			velocity += 5 * deltaTime * 2;
@@ -49,9 +48,7 @@ void PhysicManager::Update(Player* player, float deltaTime)
 			else
 			{
 				player->ChangePosition(FVector2D(0, velocity.y));
-
-			}
-			
+			}	
 		}
 		else if (direction == 1)
 		{
@@ -104,7 +101,6 @@ void PhysicManager::checkCollision(std::vector<std::string> collisionActive)
 		{
 			canMoveR = false;
 		}
-
 	}
 }
 

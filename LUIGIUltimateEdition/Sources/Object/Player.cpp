@@ -49,9 +49,17 @@ void Player::PlayerJump(FVector2D velocity,float deltaTime)
 	}
 }
 void Player::ChangePosition(FVector2D pos) {
-	pos.y = Cast<TransformComponent>(componentList.at("Transform"))->position.y + pos.y;
-	pos.x = Cast<TransformComponent>(componentList.at("Transform"))->position.x + pos.x;
-	Cast<TransformComponent>(componentList.at("Transform"))->position = pos;
+	FVector2D newPos = FVector2D();
+	float playerPos = Cast<RenderComponent>(componentList.at("Render"))->spriteComp.getPosition().x;
+	newPos.y = Cast<TransformComponent>(componentList.at("Transform"))->position.y + pos.y;
+	newPos.x = Cast<TransformComponent>(componentList.at("Transform"))->position.x + pos.x;
+	if (playerPos <= 0 && pos.x < 0) {
+		newPos.x = 0;
+	}
+	else if ( playerPos >= GameEngine::GetInstance()->screenSize.x - size && pos.x > 0){
+		newPos.x -= pos.x;
+	}
+	Cast<TransformComponent>(componentList.at("Transform"))->position = newPos;
 	
 }
 void Player::Death()
