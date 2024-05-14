@@ -19,7 +19,8 @@ CameraManager::~CameraManager() {
 
 void CameraManager::SetScreenPosition() {
 	float playerRendX = Cast<RenderComponent>(player->componentList.at("Render"))->spriteComp.getPosition().x;
-	FVector2D newPosScreen;
+	FVector2D newPosOnScreen;
+	float posOnScreenRightCorner;
 	FVector2D objTransform;
 	FVector2D playerPos = Cast<TransformComponent>(player->componentList.at("Transform"))->position;
 	float camCenter = 500;
@@ -28,8 +29,16 @@ void CameraManager::SetScreenPosition() {
 		{
 			if (e->Tag != "Player") {
 				objTransform = Cast<TransformComponent>(e->componentList.at("Transform"))->position;
-				newPosScreen.x = objTransform.x - (playerPos.x - camCenter);
-				Cast<RenderComponent>(e->componentList.at("Render"))->spriteComp.setPosition(newPosScreen.x, objTransform.y);
+				newPosOnScreen.x = objTransform.x - (playerPos.x - camCenter);
+				posOnScreenRightCorner = newPosOnScreen.x + e->size;
+				Cast<RenderComponent>(e->componentList.at("Render"))->spriteComp.setPosition(newPosOnScreen.x, objTransform.y);
+				
+				if ((newPosOnScreen.x <= 0 && posOnScreenRightCorner  >= 1000) || (newPosOnScreen.x >= 0 && newPosOnScreen.x <= 1000) || (posOnScreenRightCorner >= 0 && posOnScreenRightCorner <= 1000)) {
+					e->isRender = true;
+				}
+				else {
+					e->isRender = false;
+				}
 			}
 			else {
 				Cast<RenderComponent>(player->componentList.at("Render"))->spriteComp.setPosition(playerRendX, playerPos.y);
@@ -47,7 +56,7 @@ void CameraManager::SetScreenPosition() {
 }
 
 CameraManager::CameraManager() {
-	minPosition = 500;
+	minPosition = -1000;
 	maxPosition = 1000;
 	levelSize = maxPosition - minPosition;
 }

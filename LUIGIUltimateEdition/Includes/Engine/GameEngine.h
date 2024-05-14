@@ -15,6 +15,7 @@ class ObjectManager;
 class RenderManager;
 class EntityManager;
 class CameraManager;
+class Player;
 
 class GameEngine : public BaseObject
 {
@@ -25,16 +26,18 @@ public:
 	sf::RenderWindow* GetWindow();
 	sf::Clock deltaClock;
 	float deltaTime;
+	FVector2D screenSize;
+	sf::RenderWindow* m_window;
 private:
 	GameEngine() = default;
 	static GameEngine* m_engine;
-	sf::RenderWindow* m_window;
 	PhysicManager* m_physicsManager;
 	InputManager* m_inputManager;
 	RenderManager* m_renderManager;
 	ObjectManager* m_objectManager;
 	EntityManager* m_entityManager;
 	CameraManager* m_cameraManager;
+	Player* player;
 	void Start();
 	void HandleInput(Player* player,float deltaTime);
 	virtual FClass GetClass() override {
@@ -46,6 +49,7 @@ private:
 		return FClass("GameEngine", { Parent });
 	};
 	void SetRegistry();
+	void CreateObject();
 };
 
 #define REGISTER_CLASS(Class)\

@@ -44,21 +44,15 @@ GameEngine::~GameEngine()
 void GameEngine::RunGame()
 {
 	float changeX = 0;
-
+	screenSize = FVector2D(1000, 540);
 	if (!m_window)
-		m_window = new sf::RenderWindow(sf::VideoMode(1000, 540), "LUIGI Ultimate Edition", sf::Style::Titlebar | sf::Style::Close);
+		m_window = new sf::RenderWindow(sf::VideoMode(screenSize.x, screenSize.y), "LUIGI Ultimate Edition", sf::Style::Titlebar | sf::Style::Close);
 	sf::View currentView = m_window->getView();
 	currentView.reset(sf::FloatRect(0, 0, m_window->getSize().x, m_window->getSize().y));
 	m_window->setView(currentView);
 	m_window->setFramerateLimit(60);
 	Start();
-	Player* player = m_entityManager->CreateEntity<Player>("Player");
-	Ground* ground = m_entityManager->CreateEntity<Ground>("Ground");
-	Wall* wall = m_entityManager->CreateEntity<Wall>("Wall");
-	player->Start(500, 400);
-	ground->Start(250, 500);
-	wall->Start(800, 300);
-	m_cameraManager->player = player;
+	CreateObject();
 	while (m_window->isOpen())
 	{
 		deltaTime = deltaClock.restart().asSeconds();
@@ -66,14 +60,8 @@ void GameEngine::RunGame()
 		m_window->clear();
 		HandleInput(player, deltaTime);
 		m_cameraManager->SetScreenPosition();
-		m_physicsManager->Update(player, ground, deltaTime);
-		// float changeY = m_physics->Update(deltaTime.asSeconds());
-		/*playerSprite.move(changeX, 0);*/
-		// changeX = 0;
-		player->Update();
-		m_window->draw(Cast<RenderComponent>(player->componentList.at("Render"))->spriteComp);
-		m_window->draw(Cast<RenderComponent>(ground->componentList.at("Render"))->spriteComp);
-		m_window->draw(Cast<RenderComponent>(wall->componentList.at("Render"))->spriteComp);
+		m_physicsManager->Update(player, deltaTime);
+		m_renderManager->DrawEntity();
 		m_window->display();
 	}
 }
@@ -99,6 +87,15 @@ sf::RenderWindow *GameEngine::GetWindow()
 	return m_window;
 }
 
+void GameEngine::CreateObject() {
+	player = m_entityManager->CreateEntity<Player>("Player");
+	Ground* ground = m_entityManager->CreateEntity<Ground>("Ground");
+	Wall* wall = m_entityManager->CreateEntity<Wall>("Wall");
+	player->Start(500, 400);
+	ground->Start(0, 500);
+	wall->Start(800, 300);
+	m_cameraManager->player = player;
+}
 void GameEngine::SetRegistry()
 {
 	// Components

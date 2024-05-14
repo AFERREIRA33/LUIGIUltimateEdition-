@@ -10,10 +10,9 @@ public:
 	static RenderManager* GetInstance();
 	virtual ~RenderManager();
 	DECLARE_RTTI(RenderManager, BaseObject);
-
+	void DrawEntity();
 private:
 	RenderManager();
-	void DrawEntity();
 	sf::Texture playerTexture;
 	static RenderManager* m_renderManager;
 };

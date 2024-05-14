@@ -1,6 +1,7 @@
 #pragma once
 #include "..\..\Includes\Components\RenderComponent.h"
 
+
 RenderComponent* RenderComponent::render = nullptr;
 
 RenderComponent::RenderComponent()

@@ -1,5 +1,8 @@
      #pragma once
 #include "..\..\Includes\Manager\RenderManager.h"
+#include "..\..\Includes\Manager\EntityManager.h"
+#include "..\..\Includes\Engine\GameEngine.h"
+
 
 RenderManager* RenderManager::m_renderManager = nullptr;
 
@@ -19,11 +22,15 @@ RenderManager::~RenderManager()
 {
 	delete m_renderManager;
 }
-
-//RenderManager::DrawEntity() 
-//{
-//
-//}
+void RenderManager::DrawEntity() 
+{
+	for (Entity* e : EntityManager::GetInstance()->GetEntityList())
+	{
+		if (e->isRender) {
+			GameEngine::GetInstance()->m_window->draw(Cast<RenderComponent>(e->componentList.at("Render"))->spriteComp);
+		}
+	}
+}
 
 
 //sf::Sprite playerSprite(playerTexture);

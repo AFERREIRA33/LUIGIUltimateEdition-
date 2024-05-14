@@ -21,6 +21,7 @@ public:
 	virtual ~Entity();
 	virtual void Start(float x, float y) = 0;
 	int ID;
+	bool isRender;
 	std::string Tag;
 	sf::Texture texture;
 	std::unordered_map<std::string, Component*> componentList;

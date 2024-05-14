@@ -5,7 +5,7 @@
 #include "Factory.h"
 #include "..\Components\BaseObject.h"
 
-class ObjectManager : BaseObject
+class ObjectManager : public BaseObject
 {
 public:
 	virtual ~ObjectManager();

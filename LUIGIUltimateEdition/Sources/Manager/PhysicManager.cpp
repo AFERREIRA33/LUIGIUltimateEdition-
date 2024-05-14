@@ -26,7 +26,7 @@ PhysicManager::PhysicManager()
 {
 }
 
-void PhysicManager::Update(Player* player, Ground* ground, float deltaTime)
+void PhysicManager::Update(Player* player, float deltaTime)
 {
 	isOnGround = false;
 	canMoveR = true;

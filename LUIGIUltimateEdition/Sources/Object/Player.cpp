@@ -24,6 +24,7 @@ void Player::Start(float x, float y)
 	Cast<RenderComponent>(componentList.at("Render"))->LoadSprite(texture, Cast<TransformComponent>(componentList.at("Transform"))->position);
 	Cast<ColliderComponent>(componentList.at("Collider"))->obj = this;
 	size = Cast<RenderComponent>(componentList.at("Render"))->spriteComp.getGlobalBounds().getSize().x;
+	isRender = true;
 }
 
 void Player::Update() {
