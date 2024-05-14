@@ -6,21 +6,14 @@ Installer VCPKG : ```git clone https://github.com/microsoft/vcpkg``` et ajouter 
 
 Installer CMake.
 
-Installer Visual Studio ou rider.
+Installer Visual Studio.
 
 ## Installation
 
-### 1er Etape:
 Cloner le repo ou récupérer le zip et extraire le dossier.
 
-### 2eme Etape: 
-Dans CMake choisir le dossier du projet dans le source code puis sélectioner le preset DEV.
+Puis lancé le fichier ```build.bat```
 
-### 3eme Etape:
-Sélectioner ensuite configure puis cliquer sur finish. Une fois la configuration terminer cliquer sur generate pour génerer la solution.
+Ensuite lancé le projet via le fichier LUIGIUltimateEdition.sln dans out/binaries avec visual studio.
 
-### 4eme Etape:
-Puis lancer le projet via le bouton open project ou en lançant le .sln dans le dossier binaries.
-
-
-### Sélectioner le dossier LuigiUltimateEdition comme dossier de démarrage dans Rider ou visual studio.
+Une fois dans visual studio, et que le projet est lancer faites un click droit sur le dossier LuigiUltimateEdition puis définiser le en tant que projet de démarrage.
