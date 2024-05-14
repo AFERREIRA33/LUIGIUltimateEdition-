@@ -21,6 +21,7 @@
 #include "..\..\Includes\Object\Player.h"
 #include "..\..\Includes\Object\Ground.h"
 #include "..\..\Includes\Object\Wall.h"
+#include "..\..\Includes\Object\BackGround.h"
 
 GameEngine *GameEngine::m_engine = nullptr;
 GameEngine *GameEngine::GetInstance()
@@ -88,12 +89,18 @@ sf::RenderWindow *GameEngine::GetWindow()
 }
 
 void GameEngine::CreateObject() {
+	BackGround* backGround = m_entityManager->CreateEntity<BackGround>("BackGround");
+	backGround->Start(0, 0);
+
 	player = m_entityManager->CreateEntity<Player>("Player");
-	Ground* ground = m_entityManager->CreateEntity<Ground>("Ground");
-	Wall* wall = m_entityManager->CreateEntity<Wall>("Wall");
 	player->Start(500, 400);
+	
+	Ground* ground = m_entityManager->CreateEntity<Ground>("Ground");
 	ground->Start(0, 500);
-	wall->Start(800, 300);
+	
+	/*Wall* wall = m_entityManager->CreateEntity<Wall>("Wall");
+	wall->Start(800, 300);*/
+
 	m_cameraManager->player = player;
 }
 void GameEngine::SetRegistry()
@@ -107,4 +114,5 @@ void GameEngine::SetRegistry()
 	REGISTER_CLASS(Player);
 	REGISTER_CLASS(Ground);
 	REGISTER_CLASS(Wall);
+	REGISTER_CLASS(BackGround);
 }

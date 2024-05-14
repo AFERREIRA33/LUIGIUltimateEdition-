@@ -29,7 +29,7 @@ void CameraManager::SetScreenPosition() {
 		{
 			if (e->Tag != "Player") {
 				objTransform = Cast<TransformComponent>(e->componentList.at("Transform"))->position;
-				newPosOnScreen.x = objTransform.x - (playerPos.x - camCenter);
+				newPosOnScreen.x = objTransform.x - ((playerPos.x - camCenter)/(e->Tag == "BackGround" ? 3 : 1));
 				posOnScreenRightCorner = newPosOnScreen.x + e->size;
 				Cast<RenderComponent>(e->componentList.at("Render"))->spriteComp.setPosition(newPosOnScreen.x, objTransform.y);
 				
@@ -56,7 +56,7 @@ void CameraManager::SetScreenPosition() {
 }
 
 CameraManager::CameraManager() {
-	minPosition = -1000;
-	maxPosition = 1000;
+	minPosition = 500;
+	maxPosition = 1500;
 	levelSize = maxPosition - minPosition;
 }

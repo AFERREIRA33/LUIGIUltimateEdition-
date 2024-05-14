@@ -31,7 +31,3 @@ void RenderManager::DrawEntity()
 		}
 	}
 }
-
-
-//sf::Sprite playerSprite(playerTexture);
-//playerSprite.setPosition(500, 500);
