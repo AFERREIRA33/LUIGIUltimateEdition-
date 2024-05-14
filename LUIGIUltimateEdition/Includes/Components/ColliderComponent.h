@@ -18,6 +18,8 @@ public:
 	DECLARE_RTTI(ColliderComponent, Component);
 private:
 	bool collide;
+	sf::FloatRect entityHitbox;
+	sf::FloatRect otherHitbox;
 	static ColliderComponent* collider;
 };
 
