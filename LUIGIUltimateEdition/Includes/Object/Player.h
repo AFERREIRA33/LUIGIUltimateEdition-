@@ -10,8 +10,8 @@ public:
 	void Update();
 	void PlayerMove(float speed, float deltaTime);
 	void PlayerJump(FVector2D velocity,float deltaTime);
-	void Collide();
 	void ChangePosition(FVector2D pos);
+	void Death();
 
 	bool isJumping;
 

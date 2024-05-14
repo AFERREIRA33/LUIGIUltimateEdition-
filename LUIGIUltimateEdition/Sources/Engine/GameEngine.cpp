@@ -16,6 +16,7 @@
 #include "..\..\Includes\Components\TransformComponent.h"
 #include "..\..\Includes\Components\ColliderComponent.h"
 #include "..\..\Includes\Components\RenderComponent.h"
+#include "..\..\Includes\Components\LifeComponent.h"
 
 // Objects
 #include "..\..\Includes\Object\Player.h"
@@ -56,7 +57,7 @@ void GameEngine::RunGame()
 	while (m_window->isOpen())
 	{
 		deltaTime = deltaClock.restart().asSeconds();
-
+		player->Update();
 		m_window->clear();
 		HandleInput(player, deltaTime);
 		m_cameraManager->SetScreenPosition();
@@ -102,6 +103,8 @@ void GameEngine::SetRegistry()
 	REGISTER_CLASS(TransformComponent);
 	REGISTER_CLASS(RenderComponent);
 	REGISTER_CLASS(ColliderComponent);
+	REGISTER_CLASS(LifeComponent);
+	
 
 	// Entities
 	REGISTER_CLASS(Player);

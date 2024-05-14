@@ -6,6 +6,7 @@
 #include "..\Components\BaseObject.h"
 #include "..\Components\Component.h"
 #include "..\Components\ColliderComponent.h"
+#include "..\Components\LifeComponent.h"
 #include "..\Components\RenderComponent.h"
 #include "..\Components\TransformComponent.h"
 #include "..\..\Includes\Manager\ObjectManager.h"
