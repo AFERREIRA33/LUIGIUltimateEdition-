@@ -2,11 +2,11 @@
 
 ## Prérequis
 
-Installer VCPKG : ```git clone https://github.com/microsoft/vcpkg``` et ajouter le dossier dans les variables d'environement windows.
+Installer VCPKG : ```git clone https://github.com/microsoft/vcpkg``` et ajouter le dossier dans les variables d'environement windows
 
-Installer CMake.
+Installer CMake, il faut au minimum la version 3.25
 
-Installer Visual Studio.
+Installer Visual Studio
 
 ## Installation
 
