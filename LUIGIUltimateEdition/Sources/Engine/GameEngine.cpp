@@ -10,6 +10,7 @@
 #include "..\..\Includes\Manager\ObjectManager.h"
 #include "..\..\Includes\Manager\EntityManager.h"
 #include "..\..\Includes\Manager\CameraManager.h"
+#include "..\..\Includes\Manager\HudManager.h"
 
 // Components
 #include "..\..\Includes\Utils\Template.h"
@@ -41,6 +42,8 @@ GameEngine::~GameEngine()
 	delete m_inputManager;
 	delete m_renderManager;
 	delete m_physicsManager;
+	delete m_cameraManager;
+	delete m_hudManager;
 }
 
 void GameEngine::RunGame()
@@ -55,6 +58,7 @@ void GameEngine::RunGame()
 	m_window->setFramerateLimit(60);
 	Start();
 	CreateObject();
+
 	while (m_window->isOpen())
 	{
 		deltaTime = deltaClock.restart().asSeconds();
@@ -64,8 +68,15 @@ void GameEngine::RunGame()
 		m_physicsManager->Update(player, deltaTime);
 		m_window->clear();
 		m_renderManager->DrawEntity();
+		m_hudManager->UpdateHud();
+		m_hudManager->DrawText();
 		m_window->display();
 	}
+}
+
+Player *GameEngine::GetPlayer()
+{
+	return player;
 }
 
 void GameEngine::Start()
@@ -76,10 +87,11 @@ void GameEngine::Start()
 	m_objectManager = ObjectManager::GetInstance();
 	m_entityManager = EntityManager::GetInstance();
 	m_cameraManager = CameraManager::GetInstance();
+	m_hudManager = HudManager::GetInstance();
 	SetRegistry();
 }
 
-void GameEngine::HandleInput(Player* player, float deltaTime)
+void GameEngine::HandleInput(Player *player, float deltaTime)
 {
 	m_inputManager->HandleInput(player, deltaTime);
 }
@@ -89,16 +101,17 @@ sf::RenderWindow *GameEngine::GetWindow()
 	return m_window;
 }
 
-void GameEngine::CreateObject() {
-	BackGround* backGround = m_entityManager->CreateEntity<BackGround>("BackGround");
+void GameEngine::CreateObject()
+{
+	BackGround *backGround = m_entityManager->CreateEntity<BackGround>("BackGround");
 	backGround->Start(0, 0);
 
 	player = m_entityManager->CreateEntity<Player>("Player");
 	player->Start(500, 400);
-	
-	Ground* ground = m_entityManager->CreateEntity<Ground>("Ground");
+
+	Ground *ground = m_entityManager->CreateEntity<Ground>("Ground");
 	ground->Start(-20, 500);
-	
+
 	/*Wall* wall = m_entityManager->CreateEntity<Wall>("Wall");
 	wall->Start(800, 300);*/
 
@@ -111,7 +124,6 @@ void GameEngine::SetRegistry()
 	REGISTER_CLASS(RenderComponent);
 	REGISTER_CLASS(ColliderComponent);
 	REGISTER_CLASS(LifeComponent);
-	
 
 	// Entities
 	REGISTER_CLASS(Player);
