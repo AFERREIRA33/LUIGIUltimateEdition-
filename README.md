@@ -2,9 +2,11 @@
 
 ## Prérequis
 
-Installer VCPKG et l'ajouter dans les variables d'environements windows
-Installer CMake
-Installer Visual Studio ou rider
+Installer VCPKG : ```git clone https://github.com/microsoft/vcpkg``` et ajouter le dossier dans les variables d'environement windows.
+
+Installer CMake.
+
+Installer Visual Studio ou rider.
 
 ## Installation
 
