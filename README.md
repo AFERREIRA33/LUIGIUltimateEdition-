@@ -1,5 +1,11 @@
 # LuigiUltimateEdition
 
+## Prérequis
+
+Installer VCPKG et l'ajouter dans les variables d'environements windows
+Installer CMake
+Installer Visual Studio ou rider
+
 ## Installation
 
 ### 1er Etape:
@@ -15,4 +21,4 @@ Sélectioner ensuite configure puis cliquer sur finish. Une fois la configuratio
 Puis lancer le projet via le bouton open project ou en lançant le .sln dans le dossier binaries.
 
 
-### Si vous êtes sur visual studio sélectioner le dossier LuigiUltimateEdition comme dossier de démarrage.
+### Sélectioner le dossier LuigiUltimateEdition comme dossier de démarrage dans Rider ou visual studio.
