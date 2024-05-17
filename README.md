@@ -25,5 +25,6 @@ Ensuite lancé le projet via le fichier LUIGIUltimateEdition.sln dans out/binari
 
 Une fois dans visual studio, et que le projet est lancer faites un click droit sur le dossier LuigiUltimateEdition puis définiser le en tant que projet de démarrage.
 
+## Architécture du projet
 
-![alt text](<snapshot - archi - 2024-05-14 (1).png>)
+![alt text](ImageArchi.png)
