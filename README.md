@@ -1,4 +1,4 @@
-# LuigiUltimateEdition
+# MarioBangerEdition
 
 ## Prérequis
 
